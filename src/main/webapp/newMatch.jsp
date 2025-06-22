@@ -17,12 +17,11 @@
     <div class="container">
         <h1 class="title">Новый матч</h1>
         <h2 class="entering-name">Введите имена игроков:</h2>
-        <form class="name-form" action="#">
-            <input name="player1-name" required placeholder="Первый игрок" type="text">
-            <input name="player2-name" required placeholder="Второй игрок" type="text">
+        <form class="name-form" action="${pageContext.request.contextPath}/new-match" method="post">
+            <input name="firstPlayerName" required placeholder="Первый игрок" type="text">
+            <input name="secondPlayerName" required placeholder="Второй игрок" type="text">
             <button class="new_match_btn">Начать</button>
         </form>
-
     </div>
 
 </section>

@@ -14,8 +14,12 @@
     <div class="container">
         <h1 class="title">Табло теннисного матча</h1>
     </div>
-    <button class="new_match_btn">Начать новый матч</button>
-    <button class="completed_matches_btn">Завершенные матчи</button>
+    <form action="${pageContext.request.contextPath}/new-match" method="GET">
+        <button class="new_match_btn">Начать новый матч</button>
+    </form>
+    <form action="${pageContext.request.contextPath}/matches" method="GET">
+        <button class="completed_matches_btn">Завершенные матчи</button>
+    </form>
 </section>
 </body>
 
