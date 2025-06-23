@@ -10,26 +10,27 @@ html {
 
 
 .container {
-    width: 950px;
+    width: 855px;
     margin: 0 auto;
 }
 
 .title {
     color: white;
-    font-size: 40px;
+    font-size: 36px;
     text-transform: uppercase;
     text-align: center;
 }
 
 .main,
-.new-match {
-    height: 800px;
+.new-match,
+.current-match {
+    height: 720px;
     background: url('../img/background2-photoaidcom-darken.webp') center center/cover no-repeat;
-    padding: 100px 0 100px 0;
+    padding: 90px 0 90px 0;
 }
 
 .main_filling {
-    height: 800px;
+    height: 720px;
     background-color: black;
     opacity: 0.5;
 }
@@ -37,47 +38,86 @@ html {
 button {
     display: block;
     margin: 0 auto;
-    margin-top: 175px;
-    width: 313px;
-    height: 72px;
+    margin-top: 155px;
+    width: 282px;
+    height: 65px;
     box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.18);
     border: 4px solid rgba(0, 0, 0, 0.23);
-    border-radius: 8px;
+    border-radius: 7px;
     background-image: linear-gradient(to top, #2798b9 0%, #3ab6da 100%);
     color: white;
-    font-size: 21px;
+    font-size: 19px;
     text-transform: uppercase;
     cursor: pointer;
 }
 
 .new-match button {
-    height: 50px;
-    margin-top: 20px;
+    height: 45px;
+    margin-top: 18px;
 }
 
 .main .completed_matches_btn {
-    margin-top: 73px;
+    margin-top: 66px;
 }
 
-.new-match .entering-name {
-    margin-top: 125px;
+h2 {
+    margin-top: 90px;
     text-align: center;
     color: white;
 }
 
 .name-form {
-    margin: 35px auto;
-    width: 300px;
+    margin: 32px auto;
+    width: 270px;
     display: flex;
     flex-direction: column;
+
     input {
-        width: 313px;
-        height: 50px;
-        border-radius: 8px;
+        width: 282px;
+        height: 45px;
+        border-radius: 7px;
         background-color: white;
-        margin-bottom: 15px;
+        margin-bottom: 13px;
         border: none;
-        padding: 0 20px;
-        font-size: 14px;
+        padding: 0 18px;
+        font-size: 13px;
     }
+}
+
+table {
+    margin: auto;
+    margin-top: 18px;
+    width: 70%;
+    height: 108px;
+    border-collapse: collapse;
+    border: 3px, solid;
+    background: black;
+    color: white;
+    border-color: white;
+}
+
+td,
+th {
+    border-collapse: collapse;
+    border: 3px, solid;
+    text-align: center;
+}
+
+th {
+    height: 36px;
+}
+
+.flexbox-container form {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 720px;
+}
+
+.flexbox-container button {
+    margin-top: 36px;
+    height: 45px;
+    width: 225px;
+    text-transform: none;
+    font-size: 16px;
 }

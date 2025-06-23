@@ -28,15 +28,13 @@ public class PlayerDao {
         }
     }
 
-    public void insertPlayers(List<Player> players) {
+    public void insertPlayers(Player firstPlayer, Player secondPlayer) {
         Configuration configuration = new Configuration().addAnnotatedClasses(Player.class, Match.class);
 
         try (SessionFactory sessionFactory = configuration.buildSessionFactory()) {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
 
-            Player firstPlayer = players.get(0);
-            Player secondPlayer = players.get(1);
             session.persist(firstPlayer);
             session.persist(secondPlayer);
 

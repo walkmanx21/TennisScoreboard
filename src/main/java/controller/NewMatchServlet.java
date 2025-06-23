@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.UUID;
 
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
@@ -36,9 +37,8 @@ public class NewMatchServlet extends HttpServlet {
 
         PlayerRequestDto firstPlayerRequestDto = new PlayerRequestDto(firstPlayerName);
         PlayerRequestDto secondPlayerRequestDto = new PlayerRequestDto(secondPlayerName);
-
-        List<PlayerRequestDto> playersDto = List.of(firstPlayerRequestDto, secondPlayerRequestDto);
-        playerService.insertPlayers(playersDto);
+        UUID currentMatchUuid = playerService.insertPlayers(firstPlayerRequestDto, secondPlayerRequestDto);
+        resp.sendRedirect("/match-score?" + currentMatchUuid + "=$match_id");
 
         System.out.println();
     }

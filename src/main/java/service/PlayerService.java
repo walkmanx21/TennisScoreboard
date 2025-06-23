@@ -2,11 +2,11 @@ package service;
 
 import dao.PlayerDao;
 import dto.PlayerRequestDto;
-import jakarta.persistence.criteria.CriteriaBuilder;
+import model.CurrentMatchScore;
 import model.Player;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerService {
     private static final PlayerService INSTANCE = new PlayerService();
@@ -18,11 +18,15 @@ public class PlayerService {
 
     private PlayerService() {}
 
-    public void insertPlayers (List<PlayerRequestDto> playersRequestDto) {
-        Player firstPlayer = new Player(playersRequestDto.get(0).getName());
-        Player secondPlayer = new Player(playersRequestDto.get(1).getName());
-        List<Player> players = new ArrayList<>(List.of(firstPlayer, secondPlayer));
-        playerDao.insertPlayers(players);
+    public UUID insertPlayers (PlayerRequestDto firstPlayerRequestDto, PlayerRequestDto secondPlayerRequestDto) {
+        Player firstPlayer = new Player(firstPlayerRequestDto.getName());
+        Player secondPlayer = new Player(secondPlayerRequestDto.getName());
+        playerDao.insertPlayers(firstPlayer, secondPlayer);
+        CurrentMatchScore currentMatchScore = new CurrentMatchScore(firstPlayer, secondPlayer);
+        ConcurrentHashMap<UUID, CurrentMatchScore> matchesScore = new ConcurrentHashMap<>();
+        UUID currentMatchUuid = UUID.randomUUID();
+        matchesScore.put(currentMatchUuid, currentMatchScore);
+        return  currentMatchUuid;
     }
 
 }
