@@ -39,15 +39,15 @@
             <tr>
                 <td>${secondPlayerName}</td>
                 <td>${secondPlayerSets}</td>
-                <td>${firstPlayerGames}</td>
-                <td>${firstPlayerPoints}</td>
+                <td>${secondPlayerGames}</td>
+                <td>${secondPlayerPoints}</td>
             </tr>
             </tbody>
         </table>
         <div class="flexbox-container">
-            <form action="" method="post">
-                <button class="player_win_btn">Игрок №1 выиграл очко</button>
-                <button class="player_win_btn">Игрок №2 выиграл очко</button>
+            <form action="${url}" method="post" enctype="application/x-www-form-urlencoded">
+                <button class="player_win_btn" value="${firstPlayerId}">Игрок №1 выиграл очко</button>
+                <button class="player_win_btn" value="${secondPlayerId}">Игрок №2 выиграл очко</button>
             </form>
         </div>
     </div>
