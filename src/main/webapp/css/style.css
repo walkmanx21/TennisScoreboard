@@ -104,6 +104,12 @@ th {
 }
 
 th {
+    text-transform: uppercase;
+    color: #2798b9;
+    border-color: white;
+}
+
+th {
     height: 36px;
 }
 

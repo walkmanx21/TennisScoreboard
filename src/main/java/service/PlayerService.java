@@ -2,11 +2,11 @@ package service;
 
 import dao.PlayerDao;
 import dto.PlayerRequestDto;
-import model.CurrentMatchScore;
+import matchScore.CurrentMatchScore;
+import matchScore.MatchScoresStorage;
 import model.Player;
 
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerService {
     private static final PlayerService INSTANCE = new PlayerService();
@@ -18,15 +18,14 @@ public class PlayerService {
 
     private PlayerService() {}
 
-    public UUID insertPlayers (PlayerRequestDto firstPlayerRequestDto, PlayerRequestDto secondPlayerRequestDto) {
+    public String insertPlayers (PlayerRequestDto firstPlayerRequestDto, PlayerRequestDto secondPlayerRequestDto) {
         Player firstPlayer = new Player(firstPlayerRequestDto.getName());
         Player secondPlayer = new Player(secondPlayerRequestDto.getName());
         playerDao.insertPlayers(firstPlayer, secondPlayer);
         CurrentMatchScore currentMatchScore = new CurrentMatchScore(firstPlayer, secondPlayer);
-        ConcurrentHashMap<UUID, CurrentMatchScore> matchesScore = new ConcurrentHashMap<>();
-        UUID currentMatchUuid = UUID.randomUUID();
-        matchesScore.put(currentMatchUuid, currentMatchScore);
-        return  currentMatchUuid;
+        String currentMatchId = UUID.randomUUID().toString();
+        MatchScoresStorage.getInstance().getMatchScores().put(currentMatchId, currentMatchScore);
+        return currentMatchId;
     }
 
 }

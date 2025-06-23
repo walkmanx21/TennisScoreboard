@@ -1,5 +1,8 @@
 <%@ page import="java.nio.file.Path" %>
 <%@ page import="java.io.File" %>
+<%@ page import="java.util.UUID" %>
+<%@ page import="matchScore.CurrentMatchScore" %>
+<%@ page import="java.util.concurrent.ConcurrentHashMap" %>
 <%@page contentType="text/html; charset=UTF-8" language="java" %>
 
 <html lang="ru">
@@ -17,7 +20,7 @@
     <div class="container">
         <h1 class="title">Текущий матч</h1>
         <h2 class="score">Счет</h2>
-        <table border="1px">
+        <table>
             <thead>
             <tr>
                 <th>Игрок</th>
@@ -28,21 +31,21 @@
             </thead>
             <tbody>
             <tr>
-                <td>Игрок №1</td>
-                <td>№1</td>
-                <td>№1</td>
-                <td>№1</td>
+                <td>${firstPlayerName}</td>
+                <td>${firstPlayerSets}</td>
+                <td>${firstPlayerGames}</td>
+                <td>${firstPlayerPoints}</td>
             </tr>
             <tr>
-                <td>Игрок №2</td>
-                <td>№2</td>
-                <td>№2</td>
-                <td>№2</td>
+                <td>${secondPlayerName}</td>
+                <td>${secondPlayerSets}</td>
+                <td>${firstPlayerGames}</td>
+                <td>${firstPlayerPoints}</td>
             </tr>
             </tbody>
         </table>
         <div class="flexbox-container">
-            <form action="ссылка" method="post">
+            <form action="" method="post">
                 <button class="player_win_btn">Игрок №1 выиграл очко</button>
                 <button class="player_win_btn">Игрок №2 выиграл очко</button>
             </form>

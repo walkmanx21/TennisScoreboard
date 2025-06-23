@@ -37,8 +37,8 @@ public class NewMatchServlet extends HttpServlet {
 
         PlayerRequestDto firstPlayerRequestDto = new PlayerRequestDto(firstPlayerName);
         PlayerRequestDto secondPlayerRequestDto = new PlayerRequestDto(secondPlayerName);
-        UUID currentMatchUuid = playerService.insertPlayers(firstPlayerRequestDto, secondPlayerRequestDto);
-        resp.sendRedirect("/match-score?" + currentMatchUuid + "=$match_id");
+        String currentMatchId = playerService.insertPlayers(firstPlayerRequestDto, secondPlayerRequestDto);
+        resp.sendRedirect("/match-score?uuid=" + currentMatchId);
 
         System.out.println();
     }

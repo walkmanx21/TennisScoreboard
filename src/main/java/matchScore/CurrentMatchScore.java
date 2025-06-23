@@ -1,13 +1,15 @@
-package model;
+package matchScore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import model.Player;
 
 @NoArgsConstructor
 @Getter
 @Setter
 public class CurrentMatchScore {
+
     private Player firstPlayer;
     private Player secondPlayer;
 

@@ -1,15 +1,11 @@
 package dao;
 
-import exceptions.PlayerAlreadyExistException;
 import model.Match;
 import model.Player;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.annotations.processing.SQL;
 import org.hibernate.cfg.Configuration;
 
-import java.sql.SQLException;
-import java.util.List;
 
 public class PlayerDao {
     private static final PlayerDao INSTANCE = new PlayerDao();
@@ -29,9 +25,15 @@ public class PlayerDao {
     }
 
     public void insertPlayers(Player firstPlayer, Player secondPlayer) {
-        Configuration configuration = new Configuration().addAnnotatedClasses(Player.class, Match.class);
 
+        Long after;
+        Configuration configuration = new Configuration();
+        configuration.addAnnotatedClasses(Player.class, Match.class);
+
+
+        Long before = System.currentTimeMillis();
         try (SessionFactory sessionFactory = configuration.buildSessionFactory()) {
+            after = System.currentTimeMillis();
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
 
@@ -40,5 +42,9 @@ public class PlayerDao {
 
             session.getTransaction().commit();
         }
+
+
+        Long time = after - before;
+        System.out.println();
     }
 }
