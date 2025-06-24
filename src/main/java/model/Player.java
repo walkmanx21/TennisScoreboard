@@ -30,6 +30,10 @@ public class Player {
     @OneToMany(mappedBy = "winner", cascade = CascadeType.PERSIST)
     private List<Match> wonMatches;
 
+    private int playerSets;
+    private int playerGames;
+    private String playerPoints;
+
     public Player(String name) {
         this.name = name;
     }
