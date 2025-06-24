@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import matchScore.CurrentMatchScore;
 import matchScore.MatchScoresStorage;
 import model.Player;
+import util.PointsCalculationUtil;
 
 import java.io.IOException;
 
@@ -29,8 +30,9 @@ public class CurrentMatchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String matchId = req.getParameter("uuid");
-        String playerWinPointId = req.getParameter("PlayerWin");
+        Integer playerWinPointId = Integer.parseInt(req.getParameter("PlayerWin"));
         CurrentMatchScore currentMatchScore = MatchScoresStorage.getInstance().getMatchScores().get(matchId);
+        PointsCalculationUtil.pointsCalculation(playerWinPointId, currentMatchScore);
 
         setRequestAttributes(req, currentMatchScore);
         getServletContext().getRequestDispatcher("/currentMatchScore.jsp").forward(req, resp);

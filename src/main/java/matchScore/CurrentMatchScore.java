@@ -19,11 +19,13 @@ public class CurrentMatchScore {
     private int firstPlayerGame;
     private int secondPlayerGame;
 
-    private int firstPlayerPoints;
-    private int secondPlayerPoints;
+    private String firstPlayerPoints;
+    private String secondPlayerPoints;
 
     public CurrentMatchScore(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
+        this.firstPlayerPoints = "0";
+        this.secondPlayerPoints = "0";
     }
 }
