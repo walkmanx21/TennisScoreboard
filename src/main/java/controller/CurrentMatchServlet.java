@@ -29,6 +29,7 @@ public class CurrentMatchServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String matchId = req.getParameter("uuid");
+        String playerWinPointId = req.getParameter("PlayerWin");
         CurrentMatchScore currentMatchScore = MatchScoresStorage.getInstance().getMatchScores().get(matchId);
 
         setRequestAttributes(req, currentMatchScore);

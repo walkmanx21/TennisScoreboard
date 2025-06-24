@@ -31,9 +31,12 @@ public class PlayerDao {
         configuration.addAnnotatedClasses(Player.class, Match.class);
 
 
+
         Long before = System.currentTimeMillis();
         try (SessionFactory sessionFactory = configuration.buildSessionFactory()) {
             after = System.currentTimeMillis();
+            Long time = after - before;
+            System.out.println();
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
 
@@ -44,7 +47,6 @@ public class PlayerDao {
         }
 
 
-        Long time = after - before;
-        System.out.println();
+
     }
 }
