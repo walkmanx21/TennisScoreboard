@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 @Entity
 @Table(name = "MATCHES", schema = "PUBLIC")
 @NoArgsConstructor
@@ -24,18 +22,20 @@ public class Match {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "PLAYER1_ID", referencedColumnName = "ID")
-    private Player player1;
+    private Player firstPlayer;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "PLAYER2_ID", referencedColumnName = "ID")
-    private Player player2;
+    private Player secondPlayer;
 
     @ManyToOne
     @JoinColumn(name = "WINNER_ID", referencedColumnName = "ID")
     private Player winner;
 
-    public Match(Player player1, Player player2) {
-        this.player1 = player1;
-        this.player2 = player2;
+    public Match(Player firstPlayer, Player secondPlayer) {
+        this.firstPlayer = firstPlayer;
+        this.secondPlayer = secondPlayer;
+        firstPlayer.setPlayerPoints("0");
+        secondPlayer.setPlayerPoints("0");
     }
 }

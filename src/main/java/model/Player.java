@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -24,7 +22,7 @@ public class Player {
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "player1")
+    @OneToMany(mappedBy = "firstPlayer")
     private List<Match> playedMatches;
 
     @OneToMany(mappedBy = "winner", cascade = CascadeType.PERSIST)

@@ -1,15 +1,16 @@
 package util;
 
 import matchScore.CurrentMatchScore;
+import model.Match;
 import model.Player;
 
 public final class PointsCalculationUtil {
 
     private PointsCalculationUtil(){}
 
-    public static void scoreCalculation(Integer playerWinPointId, CurrentMatchScore currentMatchScore) {
-        Player firstPlayer = currentMatchScore.getFirstPlayer();
-        Player secondPlayer = currentMatchScore.getSecondPlayer();
+    public static void scoreCalculation(Integer playerWinPointId, Match match) {
+        Player firstPlayer = match.getFirstPlayer();
+        Player secondPlayer = match.getSecondPlayer();
         Player playerWinPoint;
         playerWinPoint = firstPlayer.getId().equals(playerWinPointId) ? firstPlayer : secondPlayer;
 

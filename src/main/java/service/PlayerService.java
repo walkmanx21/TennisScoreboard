@@ -4,6 +4,7 @@ import dao.PlayerDao;
 import dto.PlayerRequestDto;
 import matchScore.CurrentMatchScore;
 import matchScore.MatchScoresStorage;
+import model.Match;
 import model.Player;
 
 import java.util.UUID;
@@ -22,10 +23,9 @@ public class PlayerService {
         Player firstPlayer = new Player(firstPlayerRequestDto.getName());
         Player secondPlayer = new Player(secondPlayerRequestDto.getName());
         playerDao.insertPlayers(firstPlayer, secondPlayer);
-        CurrentMatchScore currentMatchScore = new CurrentMatchScore(firstPlayer, secondPlayer);
+        Match match = new Match(firstPlayer, secondPlayer);
         String currentMatchId = UUID.randomUUID().toString();
-        MatchScoresStorage.getInstance().getMatchScores().put(currentMatchId, currentMatchScore);
+        MatchScoresStorage.getInstance().getMatchScores().put(currentMatchId, match);
         return currentMatchId;
     }
-
 }
