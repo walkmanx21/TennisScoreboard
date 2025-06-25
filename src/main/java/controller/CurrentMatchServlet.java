@@ -29,7 +29,6 @@ public class CurrentMatchServlet extends HttpServlet {
         Integer playerWinPointId = Integer.parseInt(req.getParameter("PlayerWin"));
         Match match = MatchScoresStorage.getInstance().getMatchScores().get(matchId);
         ScoreCalculationUtil.scoreCalculation(playerWinPointId, match);
-
         setRequestAttributes(req, match);
         getServletContext().getRequestDispatcher("/currentMatchScore.jsp").forward(req, resp);
     }

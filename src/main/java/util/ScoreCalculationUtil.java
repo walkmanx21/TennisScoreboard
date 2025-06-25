@@ -16,9 +16,9 @@ public final class ScoreCalculationUtil {
         playerWinPoint = firstPlayer.getId().equals(playerWinPointId) ? firstPlayer : secondPlayer;
 
         if (playerWinPoint.equals(firstPlayer)) {
-            gamesCalculation(firstPlayer, secondPlayer);
+            setsCalculation(firstPlayer, secondPlayer);
         } else {
-            gamesCalculation(secondPlayer, firstPlayer);
+            setsCalculation(secondPlayer, firstPlayer);
         }
     }
 
