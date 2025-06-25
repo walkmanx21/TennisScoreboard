@@ -1,12 +1,12 @@
 package util;
 
-import matchScore.CurrentMatchScore;
 import model.Match;
 import model.Player;
 
-public final class PointsCalculationUtil {
+public final class ScoreCalculationUtil {
 
-    private PointsCalculationUtil(){}
+    private ScoreCalculationUtil() {
+    }
 
     public static void scoreCalculation(Integer playerWinPointId, Match match) {
         Player firstPlayer = match.getFirstPlayer();
@@ -15,9 +15,23 @@ public final class PointsCalculationUtil {
         playerWinPoint = firstPlayer.getId().equals(playerWinPointId) ? firstPlayer : secondPlayer;
 
         if (playerWinPoint.equals(firstPlayer)) {
-            pointsCalculation(firstPlayer, secondPlayer);
+            gamesCalculation(firstPlayer, secondPlayer);
         } else {
-            pointsCalculation(secondPlayer, firstPlayer);
+            gamesCalculation(secondPlayer, firstPlayer);
+        }
+    }
+
+    private static void gamesCalculation(Player winnerPlayer, Player loosingPlayer) {
+        int winnerPlayerGames = winnerPlayer.getPlayerGames();
+        int loosingPlayerGames = loosingPlayer.getPlayerGames();
+        int winnerPlayerSets = winnerPlayer.getPlayerSets();
+        if (winnerPlayerGames <= 5) {
+            pointsCalculation(winnerPlayer, loosingPlayer);
+            if (winnerPlayer.getPlayerGames() - loosingPlayerGames >= 2 && winnerPlayer.getPlayerGames() == 6) {
+                winnerPlayer.setPlayerGames(0);
+                loosingPlayer.setPlayerGames(0);
+                winnerPlayer.setPlayerSets(winnerPlayerSets + 1);
+            }
         }
     }
 
@@ -25,17 +39,18 @@ public final class PointsCalculationUtil {
         String winnerPlayerPoints = winnerPlayer.getPlayerPoints();
         String loosingPlayerPoints = loosingPlayer.getPlayerPoints();
         int winnerPlayerGames = winnerPlayer.getPlayerGames();
+
         switch (winnerPlayerPoints) {
-            case("0"):
+            case ("0"):
                 winnerPlayer.setPlayerPoints("15");
                 break;
-            case("15"):
+            case ("15"):
                 winnerPlayer.setPlayerPoints("30");
                 break;
-            case("30"):
+            case ("30"):
                 winnerPlayer.setPlayerPoints("40");
                 break;
-            case("40"):
+            case ("40"):
                 if (!loosingPlayerPoints.equals("40")) {
                     winnerPlayer.setPlayerGames(winnerPlayerGames + 1);
                     winnerPlayer.setPlayerPoints("0");
@@ -45,15 +60,18 @@ public final class PointsCalculationUtil {
                     loosingPlayer.setPlayerPoints("");
                 }
                 break;
-            case("AD"):
+            case ("AD"):
                 winnerPlayer.setPlayerGames(winnerPlayerGames + 1);
                 winnerPlayer.setPlayerPoints("0");
                 loosingPlayer.setPlayerPoints("0");
                 break;
-            case(""):
+            case (""):
                 winnerPlayer.setPlayerPoints("40");
                 loosingPlayer.setPlayerPoints("40");
                 break;
         }
+    }
+
+    private static void tiebreak(Player winnerPlayer, Player loosingPlayer) {
     }
 }

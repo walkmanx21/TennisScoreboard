@@ -1,9 +1,6 @@
 package matchScore;
 
 import model.Match;
-
-import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MatchScoresStorage {

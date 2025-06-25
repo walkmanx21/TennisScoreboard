@@ -1,7 +1,7 @@
 <%@ page import="java.nio.file.Path" %>
 <%@ page import="java.io.File" %>
 <%@ page import="java.util.UUID" %>
-<%@ page import="matchScore.CurrentMatchScore" %>
+<%@ page import="model.Match" %>
 <%@ page import="java.util.concurrent.ConcurrentHashMap" %>
 <%@page contentType="text/html; charset=UTF-8" language="java" %>
 

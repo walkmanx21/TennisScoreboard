@@ -5,10 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import matchScore.CurrentMatchScore;
 import matchScore.MatchScoresStorage;
 import model.Match;
-import util.PointsCalculationUtil;
+import util.ScoreCalculationUtil;
 
 import java.io.IOException;
 
@@ -29,7 +28,7 @@ public class CurrentMatchServlet extends HttpServlet {
         String matchId = req.getParameter("uuid");
         Integer playerWinPointId = Integer.parseInt(req.getParameter("PlayerWin"));
         Match match = MatchScoresStorage.getInstance().getMatchScores().get(matchId);
-        PointsCalculationUtil.scoreCalculation(playerWinPointId, match);
+        ScoreCalculationUtil.scoreCalculation(playerWinPointId, match);
 
         setRequestAttributes(req, match);
         getServletContext().getRequestDispatcher("/currentMatchScore.jsp").forward(req, resp);
