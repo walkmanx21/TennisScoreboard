@@ -39,7 +39,7 @@
             </tbody>
         </table>
         <div class="flexbox-container">
-            <form action="">
+            <form action="${pageContext.request.contextPath}/index.jsp">
                 <button class="home_btn">На главную страницу</button>
             </form>
         </div>

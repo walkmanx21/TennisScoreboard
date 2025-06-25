@@ -24,6 +24,7 @@ public class PlayerService {
         playerDao.insertPlayers(firstPlayer, secondPlayer);
         Match match = new Match(firstPlayer, secondPlayer);
         String currentMatchId = UUID.randomUUID().toString();
+        match.setUuid(currentMatchId);
         MatchScoresStorage.getInstance().getMatchScores().put(currentMatchId, match);
         return currentMatchId;
     }

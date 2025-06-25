@@ -20,11 +20,11 @@ public class Match {
     @Column(name = "ID")
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "PLAYER1_ID", referencedColumnName = "ID")
     private Player firstPlayer;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "PLAYER2_ID", referencedColumnName = "ID")
     private Player secondPlayer;
 
@@ -33,6 +33,7 @@ public class Match {
     private Player winner;
 
     private MatchStatus status;
+    private String uuid;
 
     public Match(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;

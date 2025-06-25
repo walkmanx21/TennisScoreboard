@@ -1,10 +1,9 @@
 package org.walkmanx21.dao;
 
-import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.walkmanx21.util.HibernateUtil;
 
 
 public class PlayerDao {
@@ -25,19 +24,9 @@ public class PlayerDao {
     }
 
     public void insertPlayers(Player firstPlayer, Player secondPlayer) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-        Long after;
-        Configuration configuration = new Configuration();
-        configuration.addAnnotatedClasses(Player.class, Match.class);
-
-
-
-        Long before = System.currentTimeMillis();
-        try (SessionFactory sessionFactory = configuration.buildSessionFactory()) {
-            after = System.currentTimeMillis();
-            Long time = after - before;
-            System.out.println();
-            Session session = sessionFactory.getCurrentSession();
+        try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
 
             session.persist(firstPlayer);
@@ -45,8 +34,5 @@ public class PlayerDao {
 
             session.getTransaction().commit();
         }
-
-
-
     }
 }
