@@ -1,6 +1,7 @@
-package dao;
+package org.walkmanx21.dao;
 
-import model.Player;
+import org.walkmanx21.model.Match;
+import org.walkmanx21.model.Player;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -23,11 +24,11 @@ public class PlayerDao {
         }
     }
 
-    public void insertPlayers(model.Player firstPlayer, Player secondPlayer) {
+    public void insertPlayers(Player firstPlayer, Player secondPlayer) {
 
         Long after;
         Configuration configuration = new Configuration();
-        configuration.addAnnotatedClasses(Player.class, model.Match.class);
+        configuration.addAnnotatedClasses(Player.class, Match.class);
 
 
 

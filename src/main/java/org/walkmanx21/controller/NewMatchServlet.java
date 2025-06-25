@@ -1,14 +1,14 @@
-package controller;
+package org.walkmanx21.controller;
 
-import dto.PlayerRequestDto;
+import org.walkmanx21.dto.PlayerRequestDto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.PlayerService;
-import util.ValidationUtil;
+import org.walkmanx21.service.PlayerService;
+import org.walkmanx21.util.ValidationUtil;
 import java.io.IOException;
 
 @WebServlet("/new-match")

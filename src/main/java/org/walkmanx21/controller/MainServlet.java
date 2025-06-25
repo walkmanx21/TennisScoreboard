@@ -1,4 +1,4 @@
-package controller;
+package org.walkmanx21.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

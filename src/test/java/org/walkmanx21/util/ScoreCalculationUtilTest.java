@@ -1,20 +1,20 @@
-package util;
+package org.walkmanx21.util;
 
-import model.Match;
-import model.Player;
+import org.walkmanx21.model.Match;
+import org.walkmanx21.model.Player;
 import org.junit.jupiter.api.*;
 
 public class ScoreCalculationUtilTest {
 
-    private model.Player firstPlayer;
-    private model.Player secondPlayer;
-    private model.Match match;
+    private Player firstPlayer;
+    private Player secondPlayer;
+    private Match match;
 
     @BeforeEach
     void setMatch() {
         firstPlayer = new Player("Sergey");
         firstPlayer.setId(1);
-        secondPlayer = new model.Player("Ilmira");
+        secondPlayer = new Player("Ilmira");
         secondPlayer.setId(2);
         match = new Match(firstPlayer, secondPlayer);
     }

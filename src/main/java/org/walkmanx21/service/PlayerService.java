@@ -1,10 +1,10 @@
-package service;
+package org.walkmanx21.service;
 
-import dao.PlayerDao;
-import dto.PlayerRequestDto;
-import matchScore.MatchScoresStorage;
-import model.Match;
-import model.Player;
+import org.walkmanx21.dao.PlayerDao;
+import org.walkmanx21.dto.PlayerRequestDto;
+import org.walkmanx21.MatchScoresStorage;
+import org.walkmanx21.model.Match;
+import org.walkmanx21.model.Player;
 
 import java.util.UUID;
 

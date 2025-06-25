@@ -1,16 +1,16 @@
-package util;
+package org.walkmanx21.util;
 
-import model.Match;
-import model.Player;
+import org.walkmanx21.model.Match;
+import org.walkmanx21.model.Player;
 
 public final class ScoreCalculationUtil {
 
     private ScoreCalculationUtil() {}
 
     public static void scoreCalculation(Integer playerWinPointId, Match match) {
-        model.Player firstPlayer = match.getFirstPlayer();
-        model.Player secondPlayer = match.getSecondPlayer();
-        model.Player playerWinPoint;
+        Player firstPlayer = match.getFirstPlayer();
+        Player secondPlayer = match.getSecondPlayer();
+        Player playerWinPoint;
         playerWinPoint = firstPlayer.getId().equals(playerWinPointId) ? firstPlayer : secondPlayer;
 
         if (playerWinPoint.equals(firstPlayer)) {
@@ -20,7 +20,7 @@ public final class ScoreCalculationUtil {
         }
     }
 
-    private static void setsCalculation(model.Player winnerPlayer, model.Player loosingPlayer) {
+    private static void setsCalculation(Player winnerPlayer, Player loosingPlayer) {
         int winnerPlayerSets = winnerPlayer.getPlayerSets();
         int loosingPlayerSets = loosingPlayer.getPlayerSets();
 
@@ -29,7 +29,7 @@ public final class ScoreCalculationUtil {
         }
     }
 
-    private static void gamesCalculation(model.Player winnerPlayer, model.Player loosingPlayer) {
+    private static void gamesCalculation(Player winnerPlayer, Player loosingPlayer) {
         int winnerPlayerGames = winnerPlayer.getPlayerGames();
         int loosingPlayerGames = loosingPlayer.getPlayerGames();
 
@@ -52,7 +52,7 @@ public final class ScoreCalculationUtil {
         }
     }
 
-    private static void pointsCalculation(model.Player winnerPlayer, model.Player loosingPlayer) {
+    private static void pointsCalculation(Player winnerPlayer, Player loosingPlayer) {
         String winnerPlayerPoints = winnerPlayer.getPlayerPoints();
         String loosingPlayerPoints = loosingPlayer.getPlayerPoints();
 
@@ -84,7 +84,7 @@ public final class ScoreCalculationUtil {
         }
     }
 
-    private static void tiebreak(model.Player winnerPlayer, model.Player loosingPlayer) {
+    private static void tiebreak(Player winnerPlayer, Player loosingPlayer) {
         int winnerPlayerPoints = Integer.parseInt(winnerPlayer.getPlayerPoints());
         int loosingPlayerPoints = Integer.parseInt(loosingPlayer.getPlayerPoints());
 
@@ -103,23 +103,23 @@ public final class ScoreCalculationUtil {
         }
     }
 
-    private static void setIsWon(model.Player winnerPlayer, Player loosingPlayer) {
+    private static void setIsWon(Player winnerPlayer, Player loosingPlayer) {
         clearPoints(winnerPlayer, loosingPlayer);
         clearGames(winnerPlayer, loosingPlayer);
         winnerPlayer.setPlayerSets(winnerPlayer.getPlayerSets() + 1);
     }
 
-    private static void gameIsWon(model.Player winnerPlayer, model.Player loosingPlayer) {
+    private static void gameIsWon(Player winnerPlayer, Player loosingPlayer) {
         clearPoints(winnerPlayer, loosingPlayer);
         winnerPlayer.setPlayerGames(winnerPlayer.getPlayerGames() + 1);
     }
 
-    private static void clearPoints(model.Player winnerPlayer, model.Player loosingPlayer) {
+    private static void clearPoints(Player winnerPlayer, Player loosingPlayer) {
         winnerPlayer.setPlayerPoints("0");
         loosingPlayer.setPlayerPoints("0");
     }
 
-    private static void clearGames(model.Player winnerPlayer, model.Player loosingPlayer) {
+    private static void clearGames(Player winnerPlayer, Player loosingPlayer) {
         winnerPlayer.setPlayerGames(0);
         loosingPlayer.setPlayerGames(0);
     }

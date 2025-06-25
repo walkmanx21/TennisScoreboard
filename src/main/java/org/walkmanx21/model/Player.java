@@ -1,4 +1,4 @@
-package model;
+package org.walkmanx21.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,18 +1,21 @@
-package controller;
+package org.walkmanx21.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import matchScore.MatchScoresStorage;
-import model.Match;
-import util.ScoreCalculationUtil;
+import org.walkmanx21.MatchScoresStorage;
+import org.walkmanx21.MatchStatus;
+import org.walkmanx21.model.Match;
+import org.walkmanx21.service.MatchService;
 
 import java.io.IOException;
 
 @WebServlet("/match-score/*")
 public class CurrentMatchServlet extends HttpServlet {
+
+    private final MatchService matchService = MatchService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,10 +30,16 @@ public class CurrentMatchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String matchId = req.getParameter("uuid");
         Integer playerWinPointId = Integer.parseInt(req.getParameter("PlayerWin"));
-        Match match = MatchScoresStorage.getInstance().getMatchScores().get(matchId);
-        ScoreCalculationUtil.scoreCalculation(playerWinPointId, match);
-        setRequestAttributes(req, match);
-        getServletContext().getRequestDispatcher("/currentMatchScore.jsp").forward(req, resp);
+        Match match = matchService.matchPerformance(playerWinPointId, matchId);
+
+        if (match.getStatus() == MatchStatus.BEING_PLAYED) {
+            setRequestAttributes(req, match);
+            getServletContext().getRequestDispatcher("/currentMatchScore.jsp").forward(req, resp);
+        }
+
+        if (match.getStatus() == MatchStatus.FINISHED) {
+
+        }
     }
 
     private void setRequestAttributes(HttpServletRequest req, Match match) {

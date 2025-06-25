@@ -1,10 +1,11 @@
-package model;
+package org.walkmanx21.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.walkmanx21.MatchStatus;
 
 @Entity
 @Table(name = "MATCHES", schema = "PUBLIC")
@@ -36,7 +37,7 @@ public class Match {
     public Match(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
-        this.status = MatchStatus.STARTED;
+        this.status = MatchStatus.BEING_PLAYED;
         firstPlayer.setPlayerPoints("0");
         secondPlayer.setPlayerPoints("0");
     }

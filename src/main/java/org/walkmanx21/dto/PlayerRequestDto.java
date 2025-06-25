@@ -1,4 +1,4 @@
-package dto;
+package org.walkmanx21.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
