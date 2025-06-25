@@ -1,6 +1,5 @@
 package dao;
 
-import model.Match;
 import model.Player;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,11 +23,11 @@ public class PlayerDao {
         }
     }
 
-    public void insertPlayers(Player firstPlayer, Player secondPlayer) {
+    public void insertPlayers(model.Player firstPlayer, Player secondPlayer) {
 
         Long after;
         Configuration configuration = new Configuration();
-        configuration.addAnnotatedClasses(Player.class, Match.class);
+        configuration.addAnnotatedClasses(Player.class, model.Match.class);
 
 
 

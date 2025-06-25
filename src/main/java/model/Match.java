@@ -1,6 +1,5 @@
 package model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,9 +31,12 @@ public class Match {
     @JoinColumn(name = "WINNER_ID", referencedColumnName = "ID")
     private Player winner;
 
+    private MatchStatus status;
+
     public Match(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
+        this.status = MatchStatus.STARTED;
         firstPlayer.setPlayerPoints("0");
         secondPlayer.setPlayerPoints("0");
     }

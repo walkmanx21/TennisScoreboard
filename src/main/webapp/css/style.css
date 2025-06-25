@@ -23,7 +23,8 @@ html {
 
 .main,
 .new-match,
-.current-match {
+.current-match,
+.final-score {
     height: 720px;
     background: url('../img/background2-photoaidcom-darken.webp') center center/cover no-repeat;
     padding: 90px 0 90px 0;
@@ -94,6 +95,10 @@ table {
     background: black;
     color: white;
     border-color: white;
+}
+
+.final-score table {
+    width: 40%;
 }
 
 td,

@@ -3,19 +3,18 @@ package util;
 import model.Match;
 import model.Player;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.Assertions.*;
 
 public class ScoreCalculationUtilTest {
 
-    private Player firstPlayer;
-    private Player secondPlayer;
-    private Match match;
+    private model.Player firstPlayer;
+    private model.Player secondPlayer;
+    private model.Match match;
 
     @BeforeEach
     void setMatch() {
         firstPlayer = new Player("Sergey");
         firstPlayer.setId(1);
-        secondPlayer = new Player("Ilmira");
+        secondPlayer = new model.Player("Ilmira");
         secondPlayer.setId(2);
         match = new Match(firstPlayer, secondPlayer);
     }

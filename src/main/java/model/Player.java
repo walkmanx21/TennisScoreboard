@@ -38,7 +38,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "model.Player{" +
                "id=" + id +
                ", name='" + name + '\'' +
                '}';

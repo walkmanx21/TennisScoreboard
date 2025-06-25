@@ -1,9 +1,6 @@
 package util;
 
-import dto.PlayerRequestDto;
 import exceptions.SameNamesException;
-
-import java.util.List;
 
 public final class ValidationUtil {
     private ValidationUtil() {}
