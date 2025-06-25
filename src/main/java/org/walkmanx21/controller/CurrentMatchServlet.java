@@ -38,7 +38,8 @@ public class CurrentMatchServlet extends HttpServlet {
         }
 
         if (match.getStatus() == MatchStatus.FINISHED) {
-
+            setRequestAttributes(req, match);
+            getServletContext().getRequestDispatcher("/finalScore.jsp").forward(req, resp);
         }
     }
 
