@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<%@ page import="java.nio.file.Path" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.util.UUID" %>
+<%@ page import="org.walkmanx21.model.Match" %>
+<%@ page import="java.util.concurrent.ConcurrentHashMap" %>
+<%@page contentType="text/html; charset=UTF-8" language="java" %>
+
 <html lang="ru">
 
 <head>
@@ -40,10 +46,10 @@
             </tbody>
         </table>
         <div class="search-flexbox-container">
-            <form action="${}" method="post" enctype="application/x-www-form-urlencoded">
-                <button class="prev_btn" name="previous" value="${}">пред.</button>
-                <button class="page_btn" name="page" value="${}">1</button>
-                <button class="next_btn" name="next" value="${}">след.</button>
+            <form action="" method="post" enctype="application/x-www-form-urlencoded">
+                <button class="prev_btn" name="previous" value="">пред.</button>
+                <button class="page_btn" name="page" value="">1</button>
+                <button class="next_btn" name="next" value="">след.</button>
             </form>
         </div>
     </div>
