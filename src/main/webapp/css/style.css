@@ -96,7 +96,7 @@ table {
     margin: auto;
     margin-top: 2.5vh;
     width: 43vw;
-    height: 15vh;
+    /* height: 15vh; */
     border-collapse: collapse;
     border: 0.4vh, solid;
     background: black;
@@ -120,10 +120,11 @@ th {
     text-transform: uppercase;
     color: #2798b9;
     border-color: white;
+    height: 5vh;
 }
 
-th {
-    height: 5vh;
+td {
+    height: 4vh;
 }
 
 .flexbox-container form {
@@ -146,4 +147,62 @@ th {
     width: 100vw;
     background: url('../img/background2-photoaidcom-darken.webp') center center/cover no-repeat;
     padding: 12.5vh 0 12.5vh 0;
+}
+
+.search_flexbox form label {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    margin: 2vh;
+}
+
+.search_input {
+    height: 4vh;
+    width: 54.5vh;
+    border-radius: 1vh;
+    padding: 0 1.5vh;
+    margin: 0 2.4vh 0 2.4vh;
+    font-size: 1.9vh;
+}
+
+.search_label {
+    font-size: 2.2vh;
+    color: white;
+    margin: auto;
+    align-items: center;
+}
+
+.search_button {
+    height: 4vh;
+    width: 13.9vh;
+    text-transform: none;
+    margin-top: 0;
+    font-size: 2.2vh;
+}
+
+.search-flexbox-container form {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+}
+
+.search-flexbox-container button {
+    margin-top: 2vh;
+    margin: 2.5vh 0.7vh 0 0.7vh;
+    height: 4.5vh;
+    text-transform: none;
+    font-size: 2.2vh;
+}
+
+.next_btn, .prev_btn {
+    width: 9vh;
+
+}
+
+.page_btn {
+    width: 4.1vh;
+}
+
+.completed-matches .container h1 {
+    margin-bottom: 5vh;
 }

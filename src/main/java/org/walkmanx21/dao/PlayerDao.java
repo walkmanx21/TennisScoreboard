@@ -1,6 +1,8 @@
 package org.walkmanx21.dao;
 
 import org.hibernate.exception.ConstraintViolationException;
+import org.hibernate.query.Query;
+import org.hibernate.query.SelectionQuery;
 import org.walkmanx21.exceptions.PlayerAlreadyExistException;
 import org.walkmanx21.model.Player;
 import org.hibernate.Session;
@@ -8,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.walkmanx21.util.HibernateUtil;
 
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class PlayerDao {
@@ -34,6 +37,16 @@ public class PlayerDao {
             session.beginTransaction();
             session.persist(player);
             session.getTransaction().commit();
-        } catch (ConstraintViolationException ignored) {}
+        } catch (ConstraintViolationException e) {
+            try (Session session = sessionFactory.getCurrentSession()) {
+                session.beginTransaction();
+                String hql = "FROM Player WHERE name = '" + player.getName() + "'";
+                var selectionQuery = session.createSelectionQuery(hql, Player.class);
+                player = selectionQuery.getSingleResult();
+                System.out.println(player);
+                session.getTransaction().commit();
+            }
+
+        }
     }
 }

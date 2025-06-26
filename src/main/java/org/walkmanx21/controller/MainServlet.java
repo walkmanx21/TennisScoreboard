@@ -45,11 +45,11 @@ public class MainServlet extends HttpServlet {
             players.add(new Player("Andrey"));
             players.add(new Player("Victor"));
             players.forEach(PLAYER_DAO::insertPlayer);
+            System.out.println();
 
             for (int i = 0, j = players.size() - 1; i < players.size(); i++, j--) {
                 MATCH_DAO.insertMatch(new Match(players.get(i), players.get(j), players.get(i)));
             }
-
             count++;
         }
     }
