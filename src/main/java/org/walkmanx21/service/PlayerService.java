@@ -10,7 +10,7 @@ import java.util.UUID;
 public class PlayerService {
     private static final PlayerService INSTANCE = new PlayerService();
     private static final PlayerDao PLAYER_DAO = PlayerDao.getInstance();
-    private static final MatchRepositoryService MATCH_SCORES_STORAGE_SERVICE = MatchRepositoryService.getInstance();
+    private static final MatchRepositoryService MATCH_REPOSITORY_SERVICE = MatchRepositoryService.getInstance();
 
     public static PlayerService getInstance() {
         return INSTANCE;
@@ -18,14 +18,9 @@ public class PlayerService {
 
     private PlayerService() {}
 
-    public String insertPlayers (PlayerRequestDto firstPlayerRequestDto, PlayerRequestDto secondPlayerRequestDto) {
-        Player firstPlayer = new Player(firstPlayerRequestDto.getName());
-        Player secondPlayer = new Player(secondPlayerRequestDto.getName());
-        PLAYER_DAO.insertPlayers(firstPlayer, secondPlayer);
-        Match match = new Match(firstPlayer, secondPlayer);
-        String currentMatchId = UUID.randomUUID().toString();
-        match.setUuid(currentMatchId);
-        MATCH_SCORES_STORAGE_SERVICE.addMatch(currentMatchId, match);
-        return currentMatchId;
+    public Player insertPlayer(PlayerRequestDto playerRequestDto) {
+        Player player = new Player(playerRequestDto.getName());
+        PLAYER_DAO.insertPlayer(player);
+        return player;
     }
 }

@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.walkmanx21.service.MatchRepositoryService;
-import org.walkmanx21.MatchStatus;
+import org.walkmanx21.service.MatchStatusService;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.service.MatchService;
 
@@ -33,12 +33,12 @@ public class CurrentMatchServlet extends HttpServlet {
         Integer playerWinPointId = Integer.parseInt(req.getParameter("PlayerWin"));
         Match match = matchService.matchPerformance(playerWinPointId, matchId);
 
-        if (match.getStatus() == MatchStatus.BEING_PLAYED) {
+        if (match.getStatus() == MatchStatusService.BEING_PLAYED) {
             setRequestAttributes(req, match);
             getServletContext().getRequestDispatcher("/currentMatchScore.jsp").forward(req, resp);
         }
 
-        if (match.getStatus() == MatchStatus.FINISHED) {
+        if (match.getStatus() == MatchStatusService.FINISHED) {
             setRequestAttributes(req, match);
             getServletContext().getRequestDispatcher("/finalScore.jsp").forward(req, resp);
         }

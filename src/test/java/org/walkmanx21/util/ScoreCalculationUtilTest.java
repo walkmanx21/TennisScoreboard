@@ -3,6 +3,7 @@ package org.walkmanx21.util;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
 import org.junit.jupiter.api.*;
+import org.walkmanx21.service.MatchStatusService;
 import org.walkmanx21.service.ScoreCalculationService;
 
 public class ScoreCalculationUtilTest {
@@ -194,6 +195,22 @@ public class ScoreCalculationUtilTest {
                 Assertions.assertEquals(0, secondPlayer.getPlayerGames());
                 Assertions.assertEquals(1, firstPlayer.getPlayerSets());
             }
+        }
+    }
+
+    @Nested
+    class SetsTests {
+
+        @Test
+        void whenFirstPlayerHave1SetAndWinSetAndSecondPlayerHave1SetThenMatchFinished() {
+            firstPlayer.setPlayerSets(1);
+            secondPlayer.setPlayerSets(1);
+            firstPlayer.setPlayerPoints("40");
+            secondPlayer.setPlayerPoints("30");
+            firstPlayer.setPlayerGames(5);
+            secondPlayer.setPlayerGames(4);
+            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            Assertions.assertEquals(MatchStatusService.FINISHED, match.getStatus());
         }
     }
 }

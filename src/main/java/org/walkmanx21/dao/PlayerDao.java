@@ -1,9 +1,13 @@
 package org.walkmanx21.dao;
 
+import org.hibernate.exception.ConstraintViolationException;
+import org.walkmanx21.exceptions.PlayerAlreadyExistException;
 import org.walkmanx21.model.Player;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.walkmanx21.util.HibernateUtil;
+
+import java.sql.SQLException;
 
 
 public class PlayerDao {
@@ -23,16 +27,13 @@ public class PlayerDao {
         }
     }
 
-    public void insertPlayers(Player firstPlayer, Player secondPlayer) {
+    public void insertPlayer(Player player) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-
-            session.persist(firstPlayer);
-            session.persist(secondPlayer);
-
+            session.persist(player);
             session.getTransaction().commit();
-        }
+        } catch (ConstraintViolationException ignored) {}
     }
 }

@@ -2,6 +2,7 @@ package org.walkmanx21;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.walkmanx21.dto.ErrorResponseDto;
+import org.walkmanx21.exceptions.PlayerAlreadyExistException;
 import org.walkmanx21.exceptions.SameNamesException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

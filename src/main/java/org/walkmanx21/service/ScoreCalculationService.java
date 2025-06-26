@@ -1,6 +1,5 @@
 package org.walkmanx21.service;
 
-import org.walkmanx21.MatchStatus;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
 
@@ -28,7 +27,7 @@ public final class ScoreCalculationService {
             gamesCalculation(winnerPlayer, loosingPlayer);
         }
         if (winnerPlayer.getPlayerSets() + loosingPlayer.getPlayerSets() == 3) {
-            match.setStatus(MatchStatus.FINISHED);
+            match.setStatus(MatchStatusService.FINISHED);
         }
     }
 

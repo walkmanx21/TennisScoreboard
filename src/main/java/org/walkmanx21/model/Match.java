@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.walkmanx21.MatchStatus;
+import org.walkmanx21.service.MatchStatusService;
 
 @Entity
 @Table(name = "MATCHES", schema = "PUBLIC")
@@ -32,14 +32,20 @@ public class Match {
     @JoinColumn(name = "WINNER_ID", referencedColumnName = "ID")
     private Player winner;
 
-    private MatchStatus status;
+    private MatchStatusService status;
     private String uuid;
 
     public Match(Player firstPlayer, Player secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
-        this.status = MatchStatus.BEING_PLAYED;
+        this.status = MatchStatusService.BEING_PLAYED;
         firstPlayer.setPlayerPoints("0");
         secondPlayer.setPlayerPoints("0");
+    }
+
+    public Match(Player firstPlayer, Player secondPlayer, Player winner) {
+        this.firstPlayer = firstPlayer;
+        this.secondPlayer = secondPlayer;
+        this.winner = winner;
     }
 }

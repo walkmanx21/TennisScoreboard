@@ -1,8 +1,10 @@
 package org.walkmanx21.service;
 
-import org.walkmanx21.MatchStatus;
 import org.walkmanx21.dao.MatchDao;
 import org.walkmanx21.model.Match;
+import org.walkmanx21.model.Player;
+
+import java.util.UUID;
 
 public class MatchService {
     private static final MatchService INSTANCE = new MatchService();
@@ -15,23 +17,26 @@ public class MatchService {
         return INSTANCE;
     }
 
+    public Match createNewMatch(Player firstPlayer, Player secondPlayer) {
+        Match match = new Match(firstPlayer, secondPlayer);
+        String currentMatchId = UUID.randomUUID().toString();
+        match.setUuid(currentMatchId);
+        MATCH_REPOSITORY_SERVICE.addMatch(currentMatchId, match);
+        return match;
+    }
+
     public Match matchPerformance(Integer playerWinPointId, String matchId) {
         Match match = MATCH_REPOSITORY_SERVICE.getMatch(matchId);
-        MatchStatus matchStatus = match.getStatus();
-        if (matchStatus == MatchStatus.BEING_PLAYED) {
+        MatchStatusService matchStatus = match.getStatus();
+        if (matchStatus == MatchStatusService.BEING_PLAYED) {
             ScoreCalculationService.scoreCalculation(playerWinPointId, match);
         } else {
             finalizingMatch(match);
         }
-
-//        if (match.getFirstPlayer().getPlayerSets() + match.getSecondPlayer().getPlayerSets() == 3) {
-//            finalizingMatch(match);
-//        }
         return match;
     }
 
     private void finalizingMatch(Match match) {
-//        match.setStatus(MatchStatus.FINISHED);
         if (match.getFirstPlayer().getPlayerSets() > match.getSecondPlayer().getPlayerSets()) {
             match.setWinner(match.getFirstPlayer());
         } else {
