@@ -25,11 +25,12 @@ public class Player {
     @OneToMany(mappedBy = "firstPlayer")
     private List<Match> playedMatches;
 
-    @OneToMany(mappedBy = "winner", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "winner")
     private List<Match> wonMatches;
 
     private int playerSets;
     private int playerGames;
+
     private String playerPoints;
 
     public Player(String name) {

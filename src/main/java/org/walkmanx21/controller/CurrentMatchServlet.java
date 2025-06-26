@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.walkmanx21.MatchScoresStorage;
+import org.walkmanx21.service.MatchRepositoryService;
 import org.walkmanx21.MatchStatus;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.service.MatchService;
@@ -16,11 +16,12 @@ import java.io.IOException;
 public class CurrentMatchServlet extends HttpServlet {
 
     private final MatchService matchService = MatchService.getInstance();
+    private static final MatchRepositoryService MATCH_REPOSITORY_SERVICE = MatchRepositoryService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String matchId = req.getParameter("uuid");
-        Match match = MatchScoresStorage.getInstance().getMatchScores().get(matchId);
+        Match match = MATCH_REPOSITORY_SERVICE.getMatch(matchId);
 
         setRequestAttributes(req, match);
         getServletContext().getRequestDispatcher("/currentMatchScore.jsp").forward(req, resp);

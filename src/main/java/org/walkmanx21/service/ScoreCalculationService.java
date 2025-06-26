@@ -1,31 +1,34 @@
-package org.walkmanx21.util;
+package org.walkmanx21.service;
 
+import org.walkmanx21.MatchStatus;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
 
-public final class ScoreCalculationUtil {
+public final class ScoreCalculationService {
 
-    private ScoreCalculationUtil() {}
+    private ScoreCalculationService() {}
 
     public static void scoreCalculation(Integer playerWinPointId, Match match) {
         Player firstPlayer = match.getFirstPlayer();
         Player secondPlayer = match.getSecondPlayer();
-        Player playerWinPoint;
-        playerWinPoint = firstPlayer.getId().equals(playerWinPointId) ? firstPlayer : secondPlayer;
+        Player playerWinPoint = firstPlayer.getId().equals(playerWinPointId) ? firstPlayer : secondPlayer;
 
         if (playerWinPoint.equals(firstPlayer)) {
-            setsCalculation(firstPlayer, secondPlayer);
+            setsCalculation(firstPlayer, secondPlayer, match);
         } else {
-            setsCalculation(secondPlayer, firstPlayer);
+            setsCalculation(secondPlayer, firstPlayer, match);
         }
     }
 
-    private static void setsCalculation(Player winnerPlayer, Player loosingPlayer) {
+    private static void setsCalculation(Player winnerPlayer, Player loosingPlayer, Match match) {
         int winnerPlayerSets = winnerPlayer.getPlayerSets();
         int loosingPlayerSets = loosingPlayer.getPlayerSets();
 
         if (winnerPlayerSets + loosingPlayerSets < 3) {
             gamesCalculation(winnerPlayer, loosingPlayer);
+        }
+        if (winnerPlayer.getPlayerSets() + loosingPlayer.getPlayerSets() == 3) {
+            match.setStatus(MatchStatus.FINISHED);
         }
     }
 
