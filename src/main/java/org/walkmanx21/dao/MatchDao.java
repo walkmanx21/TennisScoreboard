@@ -41,4 +41,19 @@ public class MatchDao {
 
         return matches;
     }
+
+    public List <Match> getPlayerMatches (String playerName) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        List<Match> matches;
+
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+            String hql = "FROM Match WHERE firstPlayer.name = '" + playerName + "' OR secondPlayer.name = '" + playerName + "'";
+            var selectionQuery = session.createSelectionQuery(hql, Match.class);
+            matches = selectionQuery.getResultList();
+            session.getTransaction().commit();
+        }
+
+        return matches;
+    }
 }

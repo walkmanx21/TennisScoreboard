@@ -11,6 +11,7 @@ import org.walkmanx21.model.Match;
 import org.walkmanx21.service.MatchRepositoryService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/matches/*")
@@ -21,15 +22,22 @@ public class CompletedMatchesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        List<Match> allMatches = MATCH_REPOSITORY_SERVICE.getCompletedMatches();
-        List<Match> allMatches = MATCH_DAO.getAllMatches();
-        allMatches.forEach(match -> setRequestAttributes(req, allMatches));
+        String playerName = req.getParameter("filter_by_player_name");
+        List<Match> matches = new ArrayList<>();
+        if (playerName != null) {
+            matches = MATCH_DAO.getPlayerMatches(playerName);
+        }
+        if (playerName == null) {
+            matches = MATCH_DAO.getAllMatches();
+        }
+        List<Match> finalMatches = matches;
+        matches.forEach(match -> setRequestAttributes(req, finalMatches));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/completedMatches.jsp");
         dispatcher.forward(req, resp);
     }
 
     private void setRequestAttributes(HttpServletRequest req, List<Match> matches) {
-        req.setAttribute("allMatches", matches);
+        req.setAttribute("matches", matches);
 //        req.setAttribute("matchId", match.getId());
 //        req.setAttribute("firstPlayerName", match.getFirstPlayer().getName());
 //        req.setAttribute("secondPlayerName", match.getSecondPlayer().getName());

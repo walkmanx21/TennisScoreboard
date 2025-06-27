@@ -24,10 +24,10 @@
     <div class="container">
         <h1 class="title">Завершенные матчи</h1>
         <div class="search_flexbox">
-            <form action="ссылка">
+            <form action="${pageContext.request.contextPath}/matches" method="get">
                 <label class="search_label">Поиск по игроку:
-                    <input class="search_input" required placeholder="Введите имя игрока" type="text">
-                    <button class="search_button">искать</button>
+                    <input class="search_input" name="filter_by_player_name" required placeholder="Введите имя игрока" type="text">
+                    <button class="search_button" >искать</button>
                 </label>
             </form>
         </div>
@@ -41,7 +41,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="match" items="${allMatches}">
+            <c:forEach var="match" items="${matches}">
                 <tr>
                     <td><c:out value="${match.id}"/></td>
                     <td><c:out value="${match.firstPlayer.name}"/></td>
@@ -52,7 +52,7 @@
             </tbody>
         </table>
         <div class="search-flexbox-container">
-            <form action="" method="post" enctype="application/x-www-form-urlencoded">
+            <form action="" method="get" enctype="application/x-www-form-urlencoded">
                 <button class="prev_btn" name="previous" value="">пред.</button>
                 <button class="page_btn" name="page" value="">1</button>
                 <button class="next_btn" name="next" value="">след.</button>

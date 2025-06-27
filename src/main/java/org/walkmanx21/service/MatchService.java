@@ -47,7 +47,6 @@ public class MatchService {
         }
         MATCH_DAO.insertMatch(match);
         MATCH_REPOSITORY_SERVICE.removeMatch(match.getUuid());
-//        MATCH_REPOSITORY_SERVICE.updateCompletedMatches();
     }
 
 

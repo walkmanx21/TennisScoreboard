@@ -11,8 +11,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class MatchRepositoryService {
     private static final MatchRepositoryService INSTANCE = new MatchRepositoryService();
     private static final ConcurrentHashMap<String, Match> CURRENT_MATCHES = new ConcurrentHashMap<>();
-    private static List<Match> COMPLETED_MATCHES = new CopyOnWriteArrayList<>();
-    private static final MatchDao MATCH_DAO = MatchDao.getInstance();
 
     public static MatchRepositoryService getInstance() {
         return INSTANCE;
