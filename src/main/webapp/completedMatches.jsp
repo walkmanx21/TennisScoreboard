@@ -1,9 +1,13 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.nio.file.Path" %>
 <%@ page import="java.io.File" %>
 <%@ page import="java.util.UUID" %>
 <%@ page import="org.walkmanx21.model.Match" %>
 <%@ page import="java.util.concurrent.ConcurrentHashMap" %>
+<%@ page import="org.walkmanx21.dao.MatchDao" %>
+<%@ page import="java.util.List" %>
 <%@page contentType="text/html; charset=UTF-8" language="java" %>
+
 
 <html lang="ru">
 
@@ -37,12 +41,14 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
+            <c:forEach var="match" items="${allMatches}">
+                <tr>
+                    <td><c:out value="${match.id}"/></td>
+                    <td><c:out value="${match.firstPlayer.name}"/></td>
+                    <td><c:out value="${match.secondPlayer.name}"/></td>
+                    <td><c:out value="${match.winner.name}"/></td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
         <div class="search-flexbox-container">

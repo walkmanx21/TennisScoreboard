@@ -42,8 +42,7 @@ public class PlayerDao {
                 session.beginTransaction();
                 String hql = "FROM Player WHERE name = '" + player.getName() + "'";
                 var selectionQuery = session.createSelectionQuery(hql, Player.class);
-                player = selectionQuery.getSingleResult();
-                System.out.println(player);
+                player.setId(selectionQuery.getSingleResult().getId());
                 session.getTransaction().commit();
             }
 

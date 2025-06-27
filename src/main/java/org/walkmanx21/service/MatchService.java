@@ -4,6 +4,7 @@ import org.walkmanx21.dao.MatchDao;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
 
+import java.util.List;
 import java.util.UUID;
 
 public class MatchService {
@@ -30,9 +31,11 @@ public class MatchService {
         MatchStatusService matchStatus = match.getStatus();
         if (matchStatus == MatchStatusService.BEING_PLAYED) {
             ScoreCalculationService.scoreCalculation(playerWinPointId, match);
-        } else {
-            finalizingMatch(match);
+            if (match.getStatus() == MatchStatusService.FINISHED) {
+                finalizingMatch(match);
+            }
         }
+
         return match;
     }
 
@@ -44,5 +47,8 @@ public class MatchService {
         }
         MATCH_DAO.insertMatch(match);
         MATCH_REPOSITORY_SERVICE.removeMatch(match.getUuid());
+//        MATCH_REPOSITORY_SERVICE.updateCompletedMatches();
     }
+
+
 }

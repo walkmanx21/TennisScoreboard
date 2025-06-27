@@ -10,6 +10,7 @@ import org.walkmanx21.dao.MatchDao;
 import org.walkmanx21.dao.PlayerDao;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
+import org.walkmanx21.service.MatchRepositoryService;
 import org.walkmanx21.service.MatchService;
 
 import java.io.IOException;
@@ -32,18 +33,25 @@ public class MainServlet extends HttpServlet {
     private void setStartingData() {
         if (count == 0) {
             List<Player> players = new ArrayList<>();
-            players.add(new Player("Sergey"));
-            players.add(new Player("Ilmira"));
-            players.add(new Player("Dmitry"));
-            players.add(new Player("Alice"));
-            players.add(new Player("Milana"));
-            players.add(new Player("Ivan"));
-            players.add(new Player("Maxim"));
-            players.add(new Player("Denis"));
-            players.add(new Player("Alexey"));
-            players.add(new Player("Anton"));
-            players.add(new Player("Andrey"));
-            players.add(new Player("Victor"));
+            players.add(new Player("Сергей"));
+            players.add(new Player("Ильмира"));
+            players.add(new Player("Дмитрий"));
+            players.add(new Player("Алиса"));
+            players.add(new Player("Милана"));
+            players.add(new Player("Иван"));
+            players.add(new Player("Максим"));
+            players.add(new Player("Денис"));
+            players.add(new Player("Алексей"));
+            players.add(new Player("Антон"));
+            players.add(new Player("Андрей"));
+            players.add(new Player("Валерий"));
+            players.add(new Player("Петр"));
+            players.add(new Player("Татьяна"));
+            players.add(new Player("Александр"));
+            players.add(new Player("Виталий"));
+            players.add(new Player("Елена"));
+            players.add(new Player("Владимир"));
+            players.add(new Player("Михаил"));
             players.forEach(PLAYER_DAO::insertPlayer);
             System.out.println();
 
@@ -53,4 +61,6 @@ public class MainServlet extends HttpServlet {
             count++;
         }
     }
+
+
 }

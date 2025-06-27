@@ -1,28 +1,33 @@
 package org.walkmanx21.service;
 
+import org.walkmanx21.dao.MatchDao;
 import org.walkmanx21.model.Match;
-import org.walkmanx21.model.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MatchRepositoryService {
     private static final MatchRepositoryService INSTANCE = new MatchRepositoryService();
-    private static final ConcurrentHashMap<String, Match> MATCH_REPOSITORY = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, Match> CURRENT_MATCHES = new ConcurrentHashMap<>();
+    private static List<Match> COMPLETED_MATCHES = new CopyOnWriteArrayList<>();
+    private static final MatchDao MATCH_DAO = MatchDao.getInstance();
 
     public static MatchRepositoryService getInstance() {
         return INSTANCE;
     }
 
     public void addMatch(String matchId, Match match) {
-        MATCH_REPOSITORY.put(matchId, match);
+        CURRENT_MATCHES.put(matchId, match);
     }
 
     public Match getMatch(String matchId) {
-        return MATCH_REPOSITORY.get(matchId);
+        return CURRENT_MATCHES.get(matchId);
     }
 
     public void removeMatch(String matchId) {
-        MATCH_REPOSITORY.remove(matchId);
+        CURRENT_MATCHES.remove(matchId);
     }
 
     private MatchRepositoryService(){}
