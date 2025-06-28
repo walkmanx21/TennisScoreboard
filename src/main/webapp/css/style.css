@@ -8,6 +8,49 @@ html {
     font-family: "Roboto Regular", sans-serif;
 }
 
+header {
+    position: absolute;
+    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.header_flexbox_container {
+    display: flex;
+    justify-content: space-between;
+    width: 56vw;
+    justify-content: center;
+    justify-self: center;
+}
+
+.header_btn {
+    margin: 0 auto;
+    height: 6vh;
+    width: 13vw;
+    box-shadow: none;
+    border: none;
+    background: none;
+    border-radius: 0vh;
+    font-size: 2.2vh;
+}
+
+#main {
+    width: 12vw;
+}
+
+#new {
+    width: 9vw;
+}
+
+#completed {
+    width: 13.6vw;
+}
+
+.vertical_line {
+    border-left: 0.3vh solid white;
+    height: 2.5vh;
+    align-self: center;
+}
 
 .container {
     width: 56vw;
@@ -100,7 +143,6 @@ table {
     border-collapse: collapse;
     border: 0.4vh, solid;
     background: black;
-    /*opacity: 0.5;*/
     color: white;
     border-color: white;
     font-size: 2.2vh;
@@ -208,3 +250,4 @@ td {
 .completed-matches .container h1 {
     margin-bottom: 5vh;
 }
+

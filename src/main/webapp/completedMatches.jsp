@@ -20,6 +20,21 @@
 </head>
 
 <body>
+<header>
+    <div class="header_flexbox_container">
+        <form action="${pageContext.request.contextPath}/">
+            <button class="header_btn" id="main">Главная страница</button>
+        </form>
+        <div class="vertical_line"></div>
+        <form action="${pageContext.request.contextPath}/new-match">
+            <button class="header_btn" id="new">Новый матч</button>
+        </form>
+        <div class="vertical_line"></div>
+        <form action="${pageContext.request.contextPath}/matches">
+            <button class="header_btn" id="completed">Завершенные матчи</button>
+        </form>
+    </div>
+</header>
 <section class="completed-matches">
     <div class="container">
         <h1 class="title">Завершенные матчи</h1>
