@@ -26,12 +26,11 @@
         <div class="search_flexbox">
             <form action="${pageContext.request.contextPath}/matches" method="get" enctype="application/x-www-form-urlencoded">
                 <label class="search_label">Поиск по игроку:
-                    <input class="search_input" name="filter_by_player_name" required placeholder="Введите имя игрока" type="text">
-<%--                    <c:set> var="playerName" value="${filter_by_player_name}"></c:set>--%>
-<%--                    <c:if test="${playerName != null}">--%>
+                    <input class="search_input" name="filter_by_player_name" value="${filter_by_player_name}" placeholder="Введите имя игрока" type="text">
+<%--                    <c:if test="${filter_by_player_name != null}">--%>
 <%--                        <button class="search_button">сбросить</button>--%>
 <%--                    </c:if>--%>
-<%--                    <c:if test="${playerName == null}">--%>
+<%--                    <c:if test="${filter_by_player_name == null}">--%>
 <%--                        <button class="search_button">искать</button>--%>
 <%--                    </c:if>--%>
                     <button class="search_button">искать</button>
