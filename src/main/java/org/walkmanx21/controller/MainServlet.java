@@ -51,16 +51,24 @@ public class MainServlet extends HttpServlet {
             players.add(new Player("Елена"));
             players.add(new Player("Владимир"));
             players.forEach(PLAYER_DAO::insertPlayer);
-            insertPlayers(players);
+            createStartingMatches(players);
             Collections.shuffle(players);
-            insertPlayers(players);
+            createStartingMatches(players);
             count++;
         }
     }
 
-    private void insertPlayers(List<Player> players) {
+    private void createStartingMatches(List<Player> players) {
         for (int i = 0, j = players.size() - 1; i < players.size(); i++, j--) {
             MATCH_DAO.insertMatch(new Match(players.get(i), players.get(j), players.get(i)));
+        }
+
+        /*
+        Для тестирования пагинации при поиске по игроку. Удалить после успешного тестирования.
+        Игрок для поиска - Ильмира.
+         */
+        for (int i = 0; i < 10; i++) {
+            MATCH_DAO.insertMatch(new Match(players.get(2), players.get(1), players.get(2)));
         }
     }
 

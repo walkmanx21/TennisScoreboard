@@ -6,13 +6,17 @@ import org.walkmanx21.model.Match;
 import java.util.List;
 
 public final class SetAttributesUtil {
-    private SetAttributesUtil(){}
+    private SetAttributesUtil() {
+    }
 
     public static void setMatchesAttributes(HttpServletRequest req, List<Match> matches) {
         req.setAttribute("matches", matches);
     }
 
-    public static int setPageAttributes(HttpServletRequest req, int pageNumber, boolean finalPage) {
+    public static int setPageAttributes(HttpServletRequest req, String playerName, int pageNumber, boolean finalPage) {
+        if (playerName != null) {
+            req.setAttribute("filter_by_player_name", playerName);
+        }
         if (pageNumber == 0) {
             req.setAttribute("prev", pageNumber);
             req.setAttribute("page", pageNumber);

@@ -24,10 +24,17 @@
     <div class="container">
         <h1 class="title">Завершенные матчи</h1>
         <div class="search_flexbox">
-            <form action="${pageContext.request.contextPath}/matches" method="get">
+            <form action="${pageContext.request.contextPath}/matches" method="get" enctype="application/x-www-form-urlencoded">
                 <label class="search_label">Поиск по игроку:
                     <input class="search_input" name="filter_by_player_name" required placeholder="Введите имя игрока" type="text">
-                    <button class="search_button" >искать</button>
+<%--                    <c:set> var="playerName" value="${filter_by_player_name}"></c:set>--%>
+<%--                    <c:if test="${playerName != null}">--%>
+<%--                        <button class="search_button">сбросить</button>--%>
+<%--                    </c:if>--%>
+<%--                    <c:if test="${playerName == null}">--%>
+<%--                        <button class="search_button">искать</button>--%>
+<%--                    </c:if>--%>
+                    <button class="search_button">искать</button>
                 </label>
             </form>
         </div>
@@ -53,9 +60,17 @@
         </table>
         <div class="search-flexbox-container">
             <form action="${pageContext.request.contextPath}/matches" method="get" enctype="application/x-www-form-urlencoded">
-                <button class="prev_btn" name="page" value="${prev}">пред.</button>
-                <button class="page_btn" name="page" value="${page}">${page}</button>
-                <button class="next_btn" name="page" value="${next}">след.</button>
+                <c:if test="${filter_by_player_name != null}">
+                    <input hidden="hidden" name="filter_by_player_name" value="${filter_by_player_name}">
+                    <button class="prev_btn" name="page" value="${prev}">пред.</button>
+                    <button class="page_btn" name="page" value="${page}">${page}</button>
+                    <button class="next_btn" name="page" value="${next}">след.</button>
+                </c:if>
+                <c:if test="${filter_by_player_name == null}">
+                    <button class="prev_btn" name="page" value="${prev}">пред.</button>
+                    <button class="page_btn" name="page" value="${page}">${page}</button>
+                    <button class="next_btn" name="page" value="${next}">след.</button>
+                </c:if>
             </form>
         </div>
     </div>

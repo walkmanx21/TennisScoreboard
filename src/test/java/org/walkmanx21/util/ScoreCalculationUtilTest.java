@@ -4,7 +4,7 @@ import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
 import org.junit.jupiter.api.*;
 import org.walkmanx21.service.MatchStatusService;
-import org.walkmanx21.service.ScoreCalculationService;
+import org.walkmanx21.service.MatchScoreCalculationService;
 
 public class ScoreCalculationUtilTest {
 
@@ -28,28 +28,28 @@ public class ScoreCalculationUtilTest {
         @Test
         void whenFirstPlayerHave0PointsAndWinPointThenPointsChangeTo15() {
             firstPlayer.setPlayerPoints("0");
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("15", firstPlayer.getPlayerPoints());
         }
 
         @Test
         void whenSecondPlayerHave0PointsAndWinPointThenPointsChangeTo15() {
             firstPlayer.setPlayerPoints("0");
-            ScoreCalculationService.scoreCalculation(secondPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(secondPlayer.getId(), match);
             Assertions.assertEquals("15", secondPlayer.getPlayerPoints());
         }
 
         @Test
         void whenFirstPlayerHave15PointsAndWinPointThenPointsChangeTo30() {
             firstPlayer.setPlayerPoints("15");
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("30", firstPlayer.getPlayerPoints());
         }
 
         @Test
         void whenFirstPlayerHave30PointsAndWinPointThenPointsChangeTo40() {
             firstPlayer.setPlayerPoints("30");
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("40", firstPlayer.getPlayerPoints());
         }
 
@@ -57,7 +57,7 @@ public class ScoreCalculationUtilTest {
         void whenFirstPlayerHave40AndSecondPlayerHave40PointsAndFirstPlayerWinPointThenPointsChangeToAD() {
             firstPlayer.setPlayerPoints("40");
             secondPlayer.setPlayerPoints("40");
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("AD", firstPlayer.getPlayerPoints());
         }
 
@@ -65,7 +65,7 @@ public class ScoreCalculationUtilTest {
         void whenFirstPlayerHaveADAndFirstPlayerWinPointThenPointsChangeTo0AndFirstPlayerGamesChangeTo1AndPlayersPointsChangeTo0() {
             firstPlayer.setPlayerPoints("AD");
             secondPlayer.setPlayerPoints("");
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("0", firstPlayer.getPlayerPoints());
             Assertions.assertEquals("0", secondPlayer.getPlayerPoints());
             Assertions.assertEquals(1, firstPlayer.getPlayerGames());
@@ -77,7 +77,7 @@ public class ScoreCalculationUtilTest {
             firstPlayer.setPlayerPoints("AD");
             secondPlayer.setPlayerPoints("");
             firstPlayer.setPlayerGames(1);
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("0", firstPlayer.getPlayerPoints());
             Assertions.assertEquals("0", secondPlayer.getPlayerPoints());
             Assertions.assertEquals(2, firstPlayer.getPlayerGames());
@@ -88,7 +88,7 @@ public class ScoreCalculationUtilTest {
         void whenFirstPlayerHaveADAndSecondPlayerWinPointThenPointsChangeTo40() {
             firstPlayer.setPlayerPoints("AD");
             secondPlayer.setPlayerPoints("");
-            ScoreCalculationService.scoreCalculation(secondPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(secondPlayer.getId(), match);
             Assertions.assertEquals("40", firstPlayer.getPlayerPoints());
             Assertions.assertEquals("40", secondPlayer.getPlayerPoints());
         }
@@ -106,7 +106,7 @@ public class ScoreCalculationUtilTest {
 
         @Test
         void whenFirstPlayerHaveADAndFirstPlayerWinPointThenPointsChangeTo0AndFirstPlayerGamesChangeTo1AndPlayersPointsChangeTo0() {
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("0", firstPlayer.getPlayerPoints());
             Assertions.assertEquals("0", secondPlayer.getPlayerPoints());
             Assertions.assertEquals(1, firstPlayer.getPlayerGames());
@@ -118,7 +118,7 @@ public class ScoreCalculationUtilTest {
             firstPlayer.setPlayerGames(5);
             secondPlayer.setPlayerGames(4);
             firstPlayer.setPlayerSets(0);
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("0", firstPlayer.getPlayerPoints());
             Assertions.assertEquals("0", secondPlayer.getPlayerPoints());
             Assertions.assertEquals(0, firstPlayer.getPlayerGames());
@@ -132,7 +132,7 @@ public class ScoreCalculationUtilTest {
             firstPlayer.setPlayerGames(6);
             secondPlayer.setPlayerGames(5);
             firstPlayer.setPlayerSets(0);
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals("0", firstPlayer.getPlayerPoints());
             Assertions.assertEquals("0", secondPlayer.getPlayerPoints());
             Assertions.assertEquals(0, firstPlayer.getPlayerGames());
@@ -153,7 +153,7 @@ public class ScoreCalculationUtilTest {
             void whenFirstPlayerHave0PointsAndFirstPlayerWinPointThenFirstPlayerPointChangeTo1() {
                 firstPlayer.setPlayerPoints("0");
                 secondPlayer.setPlayerPoints("0");
-                ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+                MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
                 Assertions.assertEquals("1", firstPlayer.getPlayerPoints());
             }
 
@@ -162,7 +162,7 @@ public class ScoreCalculationUtilTest {
                 firstPlayer.setPlayerPoints("6");
                 secondPlayer.setPlayerPoints("5");
                 firstPlayer.setPlayerSets(0);
-                ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+                MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
                 Assertions.assertEquals("0", firstPlayer.getPlayerPoints());
                 Assertions.assertEquals("0", secondPlayer.getPlayerPoints());
                 Assertions.assertEquals(0, secondPlayer.getPlayerGames());
@@ -175,7 +175,7 @@ public class ScoreCalculationUtilTest {
                 firstPlayer.setPlayerPoints("6");
                 secondPlayer.setPlayerPoints("0");
                 firstPlayer.setPlayerSets(0);
-                ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+                MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
                 Assertions.assertEquals("0", firstPlayer.getPlayerPoints());
                 Assertions.assertEquals("0", secondPlayer.getPlayerPoints());
                 Assertions.assertEquals(0, secondPlayer.getPlayerGames());
@@ -188,7 +188,7 @@ public class ScoreCalculationUtilTest {
                 firstPlayer.setPlayerPoints("20");
                 secondPlayer.setPlayerPoints("19");
                 firstPlayer.setPlayerSets(0);
-                ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+                MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
                 Assertions.assertEquals("0", firstPlayer.getPlayerPoints());
                 Assertions.assertEquals("0", secondPlayer.getPlayerPoints());
                 Assertions.assertEquals(0, secondPlayer.getPlayerGames());
@@ -209,7 +209,7 @@ public class ScoreCalculationUtilTest {
             secondPlayer.setPlayerPoints("30");
             firstPlayer.setPlayerGames(5);
             secondPlayer.setPlayerGames(4);
-            ScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
+            MatchScoreCalculationService.scoreCalculation(firstPlayer.getId(), match);
             Assertions.assertEquals(MatchStatusService.FINISHED, match.getStatus());
         }
     }

@@ -22,10 +22,11 @@ public class CompletedMatchesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String playerName = req.getParameter("filter_by_player_name");
         int pageNumber = getPageNumber(req);
-        List<Match> matches = getMatches(playerName, pageNumber);
+
+        List<Match> matches = MATCH_DAO.getMatches(playerName, pageNumber, COUNT_OF_ROWS);
         boolean finalPage = matches.size() / COUNT_OF_ROWS == 0;
 
-        SetAttributesUtil.setPageAttributes (req, pageNumber, finalPage);
+        SetAttributesUtil.setPageAttributes (req, playerName, pageNumber, finalPage);
         matches.forEach(match -> SetAttributesUtil.setMatchesAttributes(req, matches));
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/completedMatches.jsp");
@@ -41,15 +42,5 @@ public class CompletedMatchesServlet extends HttpServlet {
             pageNumber = Integer.parseInt(page);
         }
         return pageNumber;
-    }
-
-    private List<Match> getMatches (String playerName, int pageNumber) {
-        List<Match> matches;
-        if (playerName != null) {
-            matches = MATCH_DAO.getPlayerMatches(playerName, pageNumber, COUNT_OF_ROWS);
-        } else {
-            matches = MATCH_DAO.getAllMatches(pageNumber, COUNT_OF_ROWS);
-        }
-        return matches;
     }
 }

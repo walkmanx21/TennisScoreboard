@@ -3,9 +3,9 @@ package org.walkmanx21.service;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
 
-public final class ScoreCalculationService {
+public final class MatchScoreCalculationService {
 
-    private ScoreCalculationService() {}
+    private MatchScoreCalculationService() {}
 
     public static void scoreCalculation(Integer playerWinPointId, Match match) {
         Player firstPlayer = match.getFirstPlayer();

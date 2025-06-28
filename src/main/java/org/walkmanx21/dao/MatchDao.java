@@ -26,13 +26,18 @@ public class MatchDao {
         }
     }
 
-    public List<Match> getAllMatches(int page, int countOfRows) {
+    public List <Match> getMatches (String playerName, int page, int countOfRows) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         List<Match> matches;
 
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            String hql = "FROM Match";
+            String hql;
+            if (playerName != null) {
+                hql = "FROM Match WHERE firstPlayer.name = '" + playerName + "' OR secondPlayer.name = '" + playerName + "'";
+            } else {
+                hql = "FROM Match";
+            }
             var selectionQuery = session.createSelectionQuery(hql, Match.class);
             selectionQuery.setFirstResult((page - 1) * countOfRows);
             selectionQuery.setMaxResults(countOfRows);
@@ -40,22 +45,6 @@ public class MatchDao {
             session.getTransaction().commit();
         }
 
-        return matches;
-    }
-
-    public List <Match> getPlayerMatches (String playerName, int page, int countOfRows) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        List<Match> matches;
-
-        try (Session session = sessionFactory.getCurrentSession()) {
-            session.beginTransaction();
-            String hql = "FROM Match WHERE firstPlayer.name = '" + playerName + "' OR secondPlayer.name = '" + playerName + "'";
-            var selectionQuery = session.createSelectionQuery(hql, Match.class);
-            selectionQuery.setFirstResult((page - 1) * countOfRows);
-            selectionQuery.setMaxResults(countOfRows);
-            matches = selectionQuery.getResultList();
-            session.getTransaction().commit();
-        }
         return matches;
     }
 
