@@ -52,10 +52,10 @@
             </tbody>
         </table>
         <div class="search-flexbox-container">
-            <form action="" method="get" enctype="application/x-www-form-urlencoded">
-                <button class="prev_btn" name="previous" value="">пред.</button>
-                <button class="page_btn" name="page" value="">1</button>
-                <button class="next_btn" name="next" value="">след.</button>
+            <form action="${pageContext.request.contextPath}/matches" method="get" enctype="application/x-www-form-urlencoded">
+                <button class="prev_btn" name="page" value="${prev}">пред.</button>
+                <button class="page_btn" name="page" value="${page}">${page}</button>
+                <button class="next_btn" name="page" value="${next}">след.</button>
             </form>
         </div>
     </div>

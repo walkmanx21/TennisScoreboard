@@ -8,40 +8,84 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.walkmanx21.dao.MatchDao;
 import org.walkmanx21.model.Match;
-import org.walkmanx21.service.MatchRepositoryService;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/matches/*")
 public class CompletedMatchesServlet extends HttpServlet {
-
     private static final MatchDao MATCH_DAO = MatchDao.getInstance();
-    private static final MatchRepositoryService MATCH_REPOSITORY_SERVICE = MatchRepositoryService.getInstance();
+    private static final int COUNT_OF_ROWS = 10;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String playerName = req.getParameter("filter_by_player_name");
-        List<Match> matches = new ArrayList<>();
-        if (playerName != null) {
-            matches = MATCH_DAO.getPlayerMatches(playerName);
+        int pageNumber = getPageNumber(req);
+
+        List<Match> matches = getMatches(playerName, pageNumber);
+        boolean finalPage = false;
+        if (matches.size() / COUNT_OF_ROWS == 0) {
+            finalPage = true;
         }
-        if (playerName == null) {
-            matches = MATCH_DAO.getAllMatches();
-        }
-        List<Match> finalMatches = matches;
-        matches.forEach(match -> setRequestAttributes(req, finalMatches));
+        setPageAttributes(req, pageNumber, finalPage);
+        matches.forEach(match -> setRequestAttributes(req, matches));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/completedMatches.jsp");
         dispatcher.forward(req, resp);
     }
 
     private void setRequestAttributes(HttpServletRequest req, List<Match> matches) {
         req.setAttribute("matches", matches);
-//        req.setAttribute("matchId", match.getId());
-//        req.setAttribute("firstPlayerName", match.getFirstPlayer().getName());
-//        req.setAttribute("secondPlayerName", match.getSecondPlayer().getName());
-//        req.setAttribute("winnerPlayerName", match.getWinner().getName());
+    }
 
+    private int setPageAttributes(HttpServletRequest req, int pageNumber, boolean finalPage) {
+
+        if (pageNumber == 0) {
+            req.setAttribute("prev", pageNumber);
+            req.setAttribute("page", pageNumber);
+            req.setAttribute("next", pageNumber);
+        }
+
+        if (pageNumber >= 1) {
+            if (pageNumber == 1) {
+                req.setAttribute("prev", pageNumber);
+            } else {
+                req.setAttribute("prev", pageNumber - 1);
+            }
+            req.setAttribute("page", pageNumber);
+            req.setAttribute("next", pageNumber + 1);
+        }
+
+        if (finalPage && pageNumber >= 1) {
+            if (pageNumber == 1) {
+                req.setAttribute("prev", pageNumber);
+            } else {
+                req.setAttribute("prev", pageNumber - 1);
+            }
+            req.setAttribute("page", pageNumber);
+            req.setAttribute("next", pageNumber);
+        }
+        return pageNumber;
+    }
+
+    private int getPageNumber(HttpServletRequest req) {
+        String page = req.getParameter("page");
+        int pageNumber;
+        if (page == null) {
+            pageNumber = 1;
+        } else {
+            pageNumber = Integer.parseInt(page);
+        }
+        return pageNumber;
+    }
+
+    private List<Match> getMatches (String playerName, int pageNumber) {
+        List<Match> matches = new ArrayList<>();
+        if (playerName != null) {
+            matches = MATCH_DAO.getPlayerMatches(playerName, pageNumber, COUNT_OF_ROWS);
+        }
+        if (playerName == null) {
+            matches = MATCH_DAO.getAllMatches(pageNumber, COUNT_OF_ROWS);
+        }
+        return matches;
     }
 }

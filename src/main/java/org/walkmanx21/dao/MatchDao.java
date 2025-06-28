@@ -3,7 +3,6 @@ package org.walkmanx21.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.walkmanx21.model.Match;
-import org.walkmanx21.model.Player;
 import org.walkmanx21.util.HibernateUtil;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class MatchDao {
         }
     }
 
-    public List<Match> getAllMatches() {
+    public List<Match> getAllMatches(int page, int countOfRows) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         List<Match> matches;
 
@@ -35,6 +34,8 @@ public class MatchDao {
             session.beginTransaction();
             String hql = "FROM Match";
             var selectionQuery = session.createSelectionQuery(hql, Match.class);
+            selectionQuery.setFirstResult((page - 1) * countOfRows);
+            selectionQuery.setMaxResults(countOfRows);
             matches = selectionQuery.getResultList();
             session.getTransaction().commit();
         }
@@ -42,7 +43,7 @@ public class MatchDao {
         return matches;
     }
 
-    public List <Match> getPlayerMatches (String playerName) {
+    public List <Match> getPlayerMatches (String playerName, int page, int countOfRows) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         List<Match> matches;
 
@@ -50,10 +51,12 @@ public class MatchDao {
             session.beginTransaction();
             String hql = "FROM Match WHERE firstPlayer.name = '" + playerName + "' OR secondPlayer.name = '" + playerName + "'";
             var selectionQuery = session.createSelectionQuery(hql, Match.class);
+            selectionQuery.setFirstResult((page - 1) * countOfRows);
+            selectionQuery.setMaxResults(countOfRows);
             matches = selectionQuery.getResultList();
             session.getTransaction().commit();
         }
-
         return matches;
     }
+
 }

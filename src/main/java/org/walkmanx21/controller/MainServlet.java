@@ -10,11 +10,10 @@ import org.walkmanx21.dao.MatchDao;
 import org.walkmanx21.dao.PlayerDao;
 import org.walkmanx21.model.Match;
 import org.walkmanx21.model.Player;
-import org.walkmanx21.service.MatchRepositoryService;
-import org.walkmanx21.service.MatchService;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet("/")
@@ -51,14 +50,17 @@ public class MainServlet extends HttpServlet {
             players.add(new Player("Виталий"));
             players.add(new Player("Елена"));
             players.add(new Player("Владимир"));
-            players.add(new Player("Михаил"));
             players.forEach(PLAYER_DAO::insertPlayer);
-            System.out.println();
-
-            for (int i = 0, j = players.size() - 1; i < players.size(); i++, j--) {
-                MATCH_DAO.insertMatch(new Match(players.get(i), players.get(j), players.get(i)));
-            }
+            insertPlayers(players);
+            Collections.shuffle(players);
+            insertPlayers(players);
             count++;
+        }
+    }
+
+    private void insertPlayers(List<Player> players) {
+        for (int i = 0, j = players.size() - 1; i < players.size(); i++, j--) {
+            MATCH_DAO.insertMatch(new Match(players.get(i), players.get(j), players.get(i)));
         }
     }
 
