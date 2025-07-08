@@ -21,6 +21,7 @@ header {
     width: 56vw;
     justify-content: center;
     justify-self: center;
+    flex-wrap: wrap;
 }
 
 .header_btn {
@@ -249,5 +250,35 @@ td {
 
 .completed-matches .container h1 {
     margin-bottom: 5vh;
+}
+
+.samename_users_conatiner {
+    /* display: flex; */
+    height: 50vh;
+    width: 50vh;
+
+}
+
+.samename_users_block {
+    position: absolute;
+    /* margin: 0 auto; */
+    padding-top: 10vh;
+    padding-bottom: 15vh;
+    text-align: center;
+    vertical-align: middle;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    height: 40vmin;
+    width: 40vmin;
+    background:whitesmoke;
+    z-index: 10;
+    font-size: 3.5vh;
+}
+
+.samename_users_btn {
+    text-transform: none;
+    width: 35vh;
 }
 

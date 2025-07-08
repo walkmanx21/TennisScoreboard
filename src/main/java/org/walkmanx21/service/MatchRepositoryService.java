@@ -1,12 +1,7 @@
 package org.walkmanx21.service;
 
-import org.walkmanx21.dao.MatchDao;
 import org.walkmanx21.model.Match;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MatchRepositoryService {
     private static final MatchRepositoryService INSTANCE = new MatchRepositoryService();

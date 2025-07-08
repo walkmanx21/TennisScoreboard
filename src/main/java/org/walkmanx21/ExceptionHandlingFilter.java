@@ -1,6 +1,7 @@
 package org.walkmanx21;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.RequestDispatcher;
 import org.walkmanx21.dto.ErrorResponseDto;
 import org.walkmanx21.exceptions.PlayerAlreadyExistException;
 import org.walkmanx21.exceptions.SameNamesException;
@@ -25,14 +26,8 @@ public class ExceptionHandlingFilter extends HttpFilter {
         try {
             super.doFilter(req, res, chain);
         } catch (SameNamesException e) {
-            writeErrorResponse(res, SC_BAD_REQUEST, e);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/newMatchSameNameUsers.jsp");
+            dispatcher.forward(req, res);
         }
-    }
-
-    private void writeErrorResponse(HttpServletResponse response, int errorCode, RuntimeException e) throws IOException {
-        response.setStatus(errorCode);
-        objectMapper.writeValue(response.getWriter(), new ErrorResponseDto(errorCode, e.getMessage()));
-
-
     }
 }

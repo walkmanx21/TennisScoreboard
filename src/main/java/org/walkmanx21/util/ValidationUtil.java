@@ -8,7 +8,7 @@ public final class ValidationUtil {
     public static void validatePlayersName(String firstPlayerName, String secondPlayerName) {
 
         if (firstPlayerName.equals(secondPlayerName)) {
-            throw new SameNamesException("The names of the players match");
+            throw new SameNamesException("Имена игроков совпадают");
         }
     }
 }

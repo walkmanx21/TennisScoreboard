@@ -62,14 +62,6 @@ public class MainServlet extends HttpServlet {
         for (int i = 0, j = players.size() - 1; i < players.size(); i++, j--) {
             MATCH_DAO.insertMatch(new Match(players.get(i), players.get(j), players.get(i)));
         }
-
-        /*
-        Для тестирования пагинации при поиске по игроку. Удалить после успешного тестирования.
-        Игрок для поиска - Ильмира.
-         */
-        for (int i = 0; i < 10; i++) {
-            MATCH_DAO.insertMatch(new Match(players.get(2), players.get(1), players.get(2)));
-        }
     }
 
 
