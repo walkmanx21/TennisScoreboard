@@ -61,8 +61,8 @@
         </table>
         <div class="flexbox-container">
             <form action="${url}" method="post" enctype="application/x-www-form-urlencoded">
-                <button class="player_win_btn" name="PlayerWin" value="${firstPlayerId}">Игрок №1 выиграл очко</button>
-                <button class="player_win_btn" name="PlayerWin" value="${secondPlayerId}">Игрок №2 выиграл очко</button>
+                <button class="player_win_btn" name="PlayerWin" value="${firstPlayerId}">${firstPlayerName} выиграл очко</button>
+                <button class="player_win_btn" name="PlayerWin" value="${secondPlayerId}">${secondPlayerName} выиграл очко</button>
             </form>
         </div>
     </div>

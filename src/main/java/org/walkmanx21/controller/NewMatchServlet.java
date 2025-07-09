@@ -40,6 +40,6 @@ public class NewMatchServlet extends HttpServlet {
         Player secondPlayer = PLAYER_SERVICE.insertPlayer(secondPlayerRequestDto);
 
         Match match = MATCH_SERVICE.createNewMatch(firstPlayer, secondPlayer);
-        resp.sendRedirect("/match-score?uuid=" + match.getUuid());
+        resp.sendRedirect("match-score?uuid=" + match.getUuid());
     }
 }

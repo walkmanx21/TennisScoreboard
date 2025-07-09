@@ -46,7 +46,7 @@ public final class SetAttributesUtil {
     }
 
     public static void setCurrentMatchAttributes(HttpServletRequest req, Match match) {
-        req.setAttribute("url", "/match-score?uuid=" + req.getParameter("uuid"));
+        req.setAttribute("url", "match-score?uuid=" + req.getParameter("uuid"));
         req.setAttribute("firstPlayerName", match.getFirstPlayer().getName());
         req.setAttribute("secondPlayerName", match.getSecondPlayer().getName());
         req.setAttribute("firstPlayerSets", match.getFirstPlayer().getPlayerSets());

@@ -24,9 +24,9 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        setStartingData();
         RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
         dispatcher.forward(req, resp);
-        setStartingData();
     }
 
     private void setStartingData() {
@@ -63,6 +63,4 @@ public class MainServlet extends HttpServlet {
             MATCH_DAO.insertMatch(new Match(players.get(i), players.get(j), players.get(i)));
         }
     }
-
-
 }
