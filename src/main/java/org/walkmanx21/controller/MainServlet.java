@@ -50,6 +50,8 @@ public class MainServlet extends HttpServlet {
             players.add(new Player("Виталий"));
             players.add(new Player("Елена"));
             players.add(new Player("Владимир"));
+            players.add(new Player("Владислав"));
+            players.add(new Player("Ангелина"));
             players.forEach(PLAYER_DAO::insertPlayer);
             createStartingMatches(players);
             Collections.shuffle(players);

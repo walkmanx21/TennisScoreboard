@@ -48,4 +48,21 @@ public class MatchDao {
         return matches;
     }
 
+    public long getAllMatchesCount() {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        long count;
+
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+            String hql = "SELECT COUNT(*) FROM Match";
+
+            var selectionQuery = session.createSelectionQuery(hql, Long.class);
+            count = selectionQuery.getSingleResult();
+
+            session.getTransaction().commit();
+        }
+
+        return count;
+    }
+
 }

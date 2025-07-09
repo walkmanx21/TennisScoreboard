@@ -13,7 +13,7 @@ public final class SetAttributesUtil {
         req.setAttribute("matches", matches);
     }
 
-    public static int setPageAttributes(HttpServletRequest req, String playerName, int pageNumber, boolean finalPage) {
+    public static int setPageAttributes(HttpServletRequest req, String playerName, int pageNumber, double finalPageNumber) {
         if (playerName != null) {
             req.setAttribute("filter_by_player_name", playerName);
         }
@@ -23,7 +23,7 @@ public final class SetAttributesUtil {
             req.setAttribute("next", pageNumber);
         }
 
-        if (pageNumber >= 1) {
+        if (pageNumber >= 1 && (double)pageNumber <= finalPageNumber) {
             if (pageNumber == 1) {
                 req.setAttribute("prev", pageNumber);
             } else {
@@ -33,7 +33,7 @@ public final class SetAttributesUtil {
             req.setAttribute("next", pageNumber + 1);
         }
 
-        if (finalPage && pageNumber >= 1) {
+        if (pageNumber >= 1 && (double)pageNumber >= finalPageNumber) {
             if (pageNumber == 1) {
                 req.setAttribute("prev", pageNumber);
             } else {
