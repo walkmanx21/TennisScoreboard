@@ -21,11 +21,11 @@
         <form action="${pageContext.request.contextPath}/">
             <button class="header_btn" id="main">Главная страница</button>
         </form>
-        <div class="vertical_line"></div>
+        <div class="line"></div>
         <form action="${pageContext.request.contextPath}/new-match">
             <button class="header_btn" id="new">Новый матч</button>
         </form>
-        <div class="vertical_line"></div>
+        <div class="line"></div>
         <form action="${pageContext.request.contextPath}/matches">
             <button class="header_btn" id="completed">Завершенные матчи</button>
         </form>
@@ -54,7 +54,7 @@
             </tbody>
         </table>
         <div class="flexbox-container">
-            <form action="${pageContext.request.contextPath}/index.jsp">
+            <form action="${pageContext.request.contextPath}/main.jsp">
                 <button class="home_btn">На главную страницу</button>
             </form>
         </div>

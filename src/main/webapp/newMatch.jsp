@@ -18,11 +18,11 @@
         <form action="${pageContext.request.contextPath}/">
             <button class="header_btn" id="main">Главная страница</button>
         </form>
-        <div class="vertical_line"></div>
+        <div class="line"></div>
         <form action="${pageContext.request.contextPath}/new-match">
             <button class="header_btn" id="new">Новый матч</button>
         </form>
-        <div class="vertical_line"></div>
+        <div class="line"></div>
         <form action="${pageContext.request.contextPath}/matches">
             <button class="header_btn" id="completed">Завершенные матчи</button>
         </form>

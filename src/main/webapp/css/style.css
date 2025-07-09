@@ -21,22 +21,22 @@ header {
     width: 56vw;
     justify-content: center;
     justify-self: center;
-    flex-wrap: wrap;
 }
 
 .header_btn {
     margin: 0 auto;
-    height: 6vh;
+    height: 6vmin;
     width: 13vw;
     box-shadow: none;
     border: none;
     background: none;
-    border-radius: 0vh;
-    font-size: 2.2vh;
+    border-radius: 0vmin;
+    font-size: 2.2vmin;
 }
 
 #main {
     width: 12vw;
+
 }
 
 #new {
@@ -47,24 +47,26 @@ header {
     width: 13.6vw;
 }
 
-.vertical_line {
-    border-left: 0.3vh solid white;
-    height: 2.5vh;
+.line {
+    border-bottom: 0.3vmin solid white;
+    width: 2.5vmin;
     align-self: center;
+
 }
 
+
 .container {
-    width: 56vw;
+    width: 35vmax;
     margin: 0 auto;
 }
 
 h1 {
-    font-size: 3vh;
+    font-size: 3vmin;
 }
 
 .title {
     color: white;
-    font-size: 5vh;
+    font-size: 5vmin;
     text-transform: uppercase;
     text-align: center;
 }
@@ -72,15 +74,15 @@ h1 {
 .main,
 .new-match,
 .current-match,
-.final-score {
+.final-score,
+.completed-matches {
     height: 100vh;
-    width: 100vw;
     background: url('../img/background2-photoaidcom-darken.webp') center center/cover no-repeat;
-    padding: 12.5vh 0 12.5vh 0;
+    padding: 12.5vmin 0 12.5vmin 0;
 }
 
 .main_filling {
-    height: 100vh;
+    height: 100vmin;
     width: 100vw;
     background-color: black;
     opacity: 0.5;
@@ -89,64 +91,63 @@ h1 {
 button {
     display: block;
     margin: 0 auto;
-    margin-top: 22vh;
+    margin-top: 22vmin;
     width: 282px;
-    height: 9vh;
+    height: 9vmin;
     box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.18);
-    border: 0.5vh solid rgba(0, 0, 0, 0.23);
-    border-radius: 1vh;
+    border: 0.5vmin solid rgba(0, 0, 0, 0.23);
+    border-radius: 1vmin;
     background-image: linear-gradient(to top, #2798b9 0%, #3ab6da 100%);
     color: white;
-    font-size: 2.5vh;
+    font-size: 2.5vmin;
     text-transform: uppercase;
     cursor: pointer;
 }
 
 .new-match button {
-    height: 6.25vh;
-    margin-top: 2.5vh;
+    height: 6.25vmin;
+    margin-top: 2.5vmin;
 }
 
-.main .completed_matches_btn {
-    margin-top: 9.2vh;
+.main .completed_matches_btn,  .new-match .samename_users_btn{
+    margin-top: 9.2vmin;
 }
 
 h2 {
-    margin-top: 12.5vh;
+    margin-top: 12.5vmin;
     text-align: center;
     color: white;
-    font-size: 3.3vh;
+    font-size: 3.3vmin;
 }
 
 .name-form {
-    margin: 4.4vh auto;
+    margin: 4.4vmin auto;
     width: 270px;
     display: flex;
     flex-direction: column;
 
     input {
         width: 282px;
-        height: 6.25vh;
-        border-radius: 1vh;
+        height: 6.25vmin;
+        border-radius: 1vmin;
         background-color: white;
-        margin-bottom: 1.8vh;
+        margin-bottom: 1.8vmin;
         border: none;
-        padding: 0 2.5vh;
-        font-size: 1.8vh;
+        padding: 0 2.5vmin;
+        font-size: 1.8vmin;
     }
 }
 
 table {
     margin: auto;
-    margin-top: 2.5vh;
-    width: 43vw;
-    /* height: 15vh; */
+    margin-top: 2.5vmin;
+    width: 35vmax;
     border-collapse: collapse;
-    border: 0.4vh, solid;
+    border: 0.4vmin, solid;
     background: black;
     color: white;
     border-color: white;
-    font-size: 2.2vh;
+    font-size: 2.2vmin;
 }
 
 .final-score table {
@@ -156,73 +157,71 @@ table {
 td,
 th {
     border-collapse: collapse;
-    border: 0.4vh, solid;
+    border: 0.4vmin, solid;
     text-align: center;
 }
 
 th {
     text-transform: uppercase;
-    /* color: #2798b9; */
     border-color: white;
-    height: 5vh;
+    height: 5vmin;
     background-color: #2798b9;
 }
 
 td {
-    height: 4vh;
+    height: 4vmin;
 }
 
 .flexbox-container form {
     display: flex;
     justify-content: space-around;
     margin: 0 auto;
-    width: 47vw;
 }
 
 .flexbox-container button {
-    margin-top: 5vh;
-    height: 6.25vh;
-    width: 15vw;
+    margin-top: 5vmin;
+    height: 6.25vmin;
+    width: 30vmin;
     text-transform: none;
-    font-size: 2.2vh;
+    font-size: 2.2vmin;
 }
 
 .completed-matches {
     height: 100vh;
-    width: 100vw;
     background: url('../img/background2-photoaidcom-darken.webp') center center/cover no-repeat;
-    padding: 12.5vh 0 12.5vh 0;
+    padding: 12.5vmin 0 12.5vmin 0;
 }
+
 
 .search_flexbox form label {
     display: flex;
     justify-content: center;
     justify-self: center;
-    margin: 2vh;
+    margin: 2vmin;
 }
 
 .search_input {
-    height: 4vh;
-    width: 54vh;
-    border-radius: 1vh;
-    padding: 0 1.5vh;
-    margin: 0 2.4vh 0 2.4vh;
-    font-size: 1.9vh;
+    height: 4vmin;
+    width: 45vmin;
+    border-radius: 1vmin;
+    padding: 0 1.5vmin;
+    margin: 0 2.4vmin 0 2.4vmin;
+    font-size: 1.9vmin;
 }
 
 .search_label {
-    font-size: 2.2vh;
+    font-size: 2.2vmin;
     color: white;
     margin: auto;
     align-items: center;
 }
 
 .search_button {
-    height: 4vh;
-    width: 13.9vh;
+    height: 4vmin;
+    width: 13.9vmin;
     text-transform: none;
     margin-top: 0;
-    font-size: 2.2vh;
+    font-size: 2.2vmin;
 }
 
 .search-flexbox-container form {
@@ -232,53 +231,27 @@ td {
 }
 
 .search-flexbox-container button {
-    margin-top: 2vh;
-    margin: 2.5vh 0.7vh 0 0.7vh;
-    height: 4.5vh;
+    margin-top: 2vmin;
+    margin: 2.5vmin 0.7vmin 0 0.7vmin;
+    height: 4.5vmin;
     text-transform: none;
-    font-size: 2.2vh;
+    font-size: 2.2vmin;
 }
 
 .next_btn, .prev_btn {
-    width: 9vh;
+    width: 9vmin;
 
 }
 
 .page_btn {
-    width: 4.1vh;
+    width: 4.1vmin;
 }
 
 .completed-matches .container h1 {
-    margin-bottom: 5vh;
-}
-
-.samename_users_conatiner {
-    /* display: flex; */
-    height: 50vh;
-    width: 50vh;
-
-}
-
-.samename_users_block {
-    position: absolute;
-    /* margin: 0 auto; */
-    padding-top: 10vh;
-    padding-bottom: 15vh;
-    text-align: center;
-    vertical-align: middle;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    height: 40vmin;
-    width: 40vmin;
-    background:whitesmoke;
-    z-index: 10;
-    font-size: 3.5vh;
+    margin-bottom: 5vmin;
 }
 
 .samename_users_btn {
     text-transform: none;
-    width: 35vh;
+    width: 35vmin;
 }
-

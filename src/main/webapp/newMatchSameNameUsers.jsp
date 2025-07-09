@@ -19,11 +19,11 @@
         <form action="${pageContext.request.contextPath}/">
             <button class="header_btn" id="main">Главная страница</button>
         </form>
-        <div class="vertical_line"></div>
+        <div class="line"></div>
         <form action="${pageContext.request.contextPath}/new-match">
             <button class="header_btn" id="new">Новый матч</button>
         </form>
-        <div class="vertical_line"></div>
+        <div class="line"></div>
         <form action="${pageContext.request.contextPath}/matches">
             <button class="header_btn" id="completed">Завершенные матчи</button>
         </form>
@@ -32,17 +32,13 @@
 <section class="new-match">
     <div class="container">
         <h1 class="title">Новый матч</h1>
-        <div class="samename_users_conatiner" >
-            <form action="${pageContext.request.contextPath}/new-match">
-                <div class="samename_users_block">
-                    <p>Имена игроков одинаковы!</p>
-                    <button class="samename_users_btn">Введите уникальные имена</button>
-                </div>
-            </form>
-        </div>
-
+        <h2>Имена игроков одинаковы!</h2>
+        <form action="${pageContext.request.contextPath}/new-match">
+            <div class="samename_users_block">
+                <button class="samename_users_btn">Введите уникальные имена</button>
+            </div>
+        </form>
     </div>
-
 </section>
 </body>
 

@@ -25,11 +25,11 @@
         <form action="${pageContext.request.contextPath}/">
             <button class="header_btn" id="main">Главная страница</button>
         </form>
-        <div class="vertical_line"></div>
+        <div class="line"></div>
         <form action="${pageContext.request.contextPath}/new-match">
             <button class="header_btn" id="new">Новый матч</button>
         </form>
-        <div class="vertical_line"></div>
+        <div class="line"></div>
         <form action="${pageContext.request.contextPath}/matches">
             <button class="header_btn" id="completed">Завершенные матчи</button>
         </form>
@@ -40,7 +40,7 @@
         <h1 class="title">Завершенные матчи</h1>
         <div class="search_flexbox">
             <form action="${pageContext.request.contextPath}/matches" method="get" enctype="application/x-www-form-urlencoded">
-                <label class="search_label">Поиск по игроку:
+                <label class="search_label">Поиск:
                     <c:if test="${filter_by_player_name != null}">
                         <input class="search_input" name="filter_by_player_name" value="${filter_by_player_name}" placeholder="Введите имя игрока" type="reset">
                         <button class="search_button">сбросить</button>
