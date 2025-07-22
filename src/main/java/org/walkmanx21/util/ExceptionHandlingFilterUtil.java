@@ -1,4 +1,4 @@
-package org.walkmanx21;
+package org.walkmanx21.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.RequestDispatcher;
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 
 @WebFilter("/*")
-public class ExceptionHandlingFilter extends HttpFilter {
+public class ExceptionHandlingFilterUtil extends HttpFilter {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
