@@ -1,17 +1,10 @@
 package org.walkmanx21.dao;
 
 import org.hibernate.exception.ConstraintViolationException;
-import org.hibernate.query.Query;
-import org.hibernate.query.SelectionQuery;
-import org.walkmanx21.exceptions.PlayerAlreadyExistException;
 import org.walkmanx21.model.Player;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.walkmanx21.util.HibernateUtil;
-
-import java.sql.SQLException;
-import java.util.List;
-
 
 public class PlayerDao {
     private static final PlayerDao INSTANCE = new PlayerDao();
