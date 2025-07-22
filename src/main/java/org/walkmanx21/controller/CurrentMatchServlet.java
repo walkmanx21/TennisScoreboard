@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet("/match-score/*")
 public class CurrentMatchServlet extends HttpServlet {
 
-    private final MatchService matchService = MatchService.getInstance();
+    private static final MatchService MATCH_SERVICE = MatchService.getInstance();
     private static final MatchRepositoryService MATCH_REPOSITORY_SERVICE = MatchRepositoryService.getInstance();
 
     @Override
@@ -31,7 +31,7 @@ public class CurrentMatchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String matchId = req.getParameter("uuid");
         Integer playerWinPointId = Integer.parseInt(req.getParameter("PlayerWin"));
-        Match match = matchService.matchPerformance(playerWinPointId, matchId);
+        Match match = MATCH_SERVICE.matchPerformance(playerWinPointId, matchId);
         SetAttributesUtil.setCurrentMatchAttributes(req, match);
 
         if (match.getStatus() == MatchStatusService.BEING_PLAYED) {
