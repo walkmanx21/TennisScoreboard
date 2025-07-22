@@ -8,7 +8,7 @@ import lombok.ToString;
 import org.walkmanx21.service.MatchStatusService;
 
 @Entity
-@Table(name = "MATCHES", schema = "PUBLIC")
+@Table(name = "matches", schema = "public")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -17,19 +17,19 @@ public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "PLAYER1_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "player1_id", referencedColumnName = "id")
     private Player firstPlayer;
 
     @ManyToOne
-    @JoinColumn(name = "PLAYER2_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "player2_id", referencedColumnName = "id")
     private Player secondPlayer;
 
     @ManyToOne
-    @JoinColumn(name = "WINNER_ID", referencedColumnName = "ID")
+    @JoinColumn(name = "winner_id", referencedColumnName = "id")
     private Player winner;
 
     private MatchStatusService status;

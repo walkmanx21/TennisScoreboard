@@ -27,8 +27,6 @@ public class CompletedMatchesServlet extends HttpServlet {
         int allMatchesCount = (int)(MATCH_DAO.getAllMatchesCount());
         double finalPageNumber =  (double) allMatchesCount / (double)COUNT_OF_ROWS;
 
-        boolean finalPage = matches.size() / COUNT_OF_ROWS == 0;
-
         SetAttributesUtil.setPageAttributes (req, playerName, pageNumber, finalPageNumber);
         matches.forEach(match -> SetAttributesUtil.setMatchesAttributes(req, matches));
 

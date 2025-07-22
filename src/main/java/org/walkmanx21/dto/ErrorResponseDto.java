@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ErrorResponseDto {
-    Integer code;
-    String message;
+    private Integer code;
+    private String message;
 }

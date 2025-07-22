@@ -14,7 +14,7 @@ public final class SetAttributesUtil {
         req.setAttribute("matches", matches);
     }
 
-    public static int setPageAttributes(HttpServletRequest req, String playerName, int pageNumber, double finalPageNumber) {
+    public static void setPageAttributes(HttpServletRequest req, String playerName, int pageNumber, double finalPageNumber) {
         if (playerName != null) {
             req.setAttribute("filter_by_player_name", playerName);
         }
@@ -43,7 +43,6 @@ public final class SetAttributesUtil {
             req.setAttribute("page", pageNumber);
             req.setAttribute("next", pageNumber);
         }
-        return pageNumber;
     }
 
     public static void setCurrentMatchAttributes(HttpServletRequest req, Match match) {
